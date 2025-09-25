@@ -18,7 +18,7 @@ body {
 
 /* Top Bar */
 .top-bar {
-    background: #0d47a1; /* Dark Blue */
+    background: #00796B; /* Dark Green */
     color: #fff;
     padding: 10px 0;
     font-size: 14px;
@@ -61,7 +61,7 @@ header .container {
 header h1 {
     margin: 0;
     font-size: 28px;
-    color: #0d47a1;
+    color: #00796B; /* Dark Green */
 }
 
 /* Navigation */
@@ -85,7 +85,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #1e88e5; /* Lighter Blue */
+    color: #009688; /* Lighter Green */
 }
 
 /* Main Content */
@@ -102,7 +102,7 @@ main {
 }
 
 .welcome-section h2 {
-    color: #0d47a1;
+    color: #00796B; /* Dark Green */
 }
 
 .quick-links {
@@ -121,7 +121,7 @@ main {
 }
 
 .link-box {
-    background: #1e88e5;
+    background: #009688; /* Lighter Green */
     color: #fff;
     padding: 20px 40px;
     border-radius: 8px;
@@ -131,7 +131,7 @@ main {
 }
 
 .link-box:hover {
-    background: #0d47a1;
+    background: #00796B; /* Dark Green */
 }
 
 /* Footer */
@@ -153,8 +153,8 @@ footer {
 }
 
 .footer-section h4 {
-    color: #1e88e5;
-    border-bottom: 2px solid #1e88e5;
+    color: #009688; /* Lighter Green */
+    border-bottom: 2px solid #009688; /* Lighter Green */
     padding-bottom: 10px;
     margin-bottom: 15px;
 }
@@ -171,7 +171,7 @@ footer {
 }
 
 .footer-section ul li a:hover {
-    color: #1e88e5;
+    color: #009688; /* Lighter Green */
 }
 
 .social-media a {
