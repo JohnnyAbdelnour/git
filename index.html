@@ -6,28 +6,79 @@
     <title>بلدية زان</title>
     <link rel="icon" href="Logo Zan.png" type="image/png">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="top-bar">
+        <div class="container">
+            <span>اتصل بنا: 123-456-7890</span>
+            <span>|</span>
+            <span>البريد الإلكتروني: info@zan-municipality.gov</span>
+        </div>
+    </div>
     <header>
-        <img src="Logo Zan.png" alt="شعار بلدية زان" id="logo">
-        <h1>بلدية زان</h1>
+        <div class="container">
+            <div class="logo-container">
+                <img src="Logo Zan.png" alt="شعار بلدية زان" id="logo">
+                <h1>بلدية زان</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#">عن البلدية</a></li>
+                    <li><a href="#">الخدمات</a></li>
+                    <li><a href="#">الأخبار والنشاطات</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#">الرئيسية</a></li>
-            <li><a href="#">عن البلدية</a></li>
-            <li><a href="#">الخدمات</a></li>
-            <li><a href="#">اتصل بنا</a></li>
-        </ul>
-    </nav>
     <main>
-        <section>
-            <h2>أهلاً بكم في موقع بلدية زان</h2>
-            <p>هنا يمكنك أن تجد معلومات عن خدماتنا ومشاريعنا.</p>
-        </section>
+        <div class="container">
+            <section class="welcome-section">
+                <h2>أهلاً بكم في الموقع الرسمي لبلدية زان</h2>
+                <p>نعمل لخدمتكم وتطوير مدينتنا. هنا يمكنكم العثور على معلومات حول خدماتنا ومشاريعنا وأخبارنا.</p>
+            </section>
+            <section class="quick-links">
+                 <h3>روابط سريعة</h3>
+                 <div class="links-container">
+                    <a href="#" class="link-box">المعاملات</a>
+                    <a href="#" class="link-box">المشاريع</a>
+                    <a href="#" class="link-box">الشكاوى والاقتراحات</a>
+                 </div>
+            </section>
+        </div>
     </main>
     <footer>
-        <p>&copy; 2023 بلدية زان</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>عن بلدية زان</h4>
+                    <p>نسعى لتكون بلدية زان نموذجًا في التطور والخدمة المجتمعية.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط مهمة</h4>
+                    <ul>
+                        <li><a href="#">فرص العمل</a></li>
+                        <li><a href="#">المناقصات</a></li>
+                        <li><a href="#">البيئة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعونا</h4>
+                    <div class="social-media">
+                        <a href="#">فيسبوك</a>
+                        <a href="#">تويتر</a>
+                        <a href="#">انستغرام</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2023 بلدية زان. تصميم وتطوير بواسطة [اسم المطور/الشركة]</p>
+            </div>
+        </div>
     </footer>
     <script src="script.js"></script>
 </body>
