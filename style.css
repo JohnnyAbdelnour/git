@@ -460,3 +460,99 @@ footer {
 .download-button:hover {
     background: #00796B; /* Dark Green */
 }
+
+/* Responsive Design */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #00796B;
+}
+
+@media (max-width: 1024px) {
+    /* Tablet Styles */
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    header .container {
+        flex-wrap: wrap;
+    }
+
+    nav {
+        width: 100%;
+        order: 3; /* Move nav below logo and toggle */
+        display: none; /* Hide nav by default on smaller screens */
+    }
+
+    nav.active {
+        display: block; /* Show nav when active */
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        text-align: center;
+        margin: 15px 0;
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger menu */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile Styles */
+    .top-bar {
+        font-size: 12px;
+    }
+
+    #logo {
+        height: 50px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .slider-container {
+        height: 400px;
+    }
+
+    .slide-caption {
+        bottom: 20px;
+        right: 20px;
+        padding: 15px;
+    }
+
+    .slide-caption h2 {
+        font-size: 18px;
+    }
+
+    .slide-caption p {
+        font-size: 14px;
+    }
+
+    .links-container {
+        flex-direction: column;
+    }
+
+    .about-vision-mission {
+        flex-direction: column;
+    }
+}
