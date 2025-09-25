@@ -268,6 +268,7 @@ main {
 
 .quick-links {
     text-align: center;
+    padding: 20px 0;
 }
 
 .quick-links h3 {
@@ -394,4 +395,68 @@ footer {
 .vision h3, .mission h3 {
     margin-top: 0;
     color: #00796B; /* Dark Green */
+}
+
+/* Services Page Styles */
+.service-section {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.working-hours p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+#form-search {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+#forms-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.form-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-item:last-child {
+    border-bottom: none;
+}
+
+.form-item.hidden {
+    display: none;
+}
+
+.form-name {
+    font-size: 18px;
+}
+
+.download-button {
+    background: #009688; /* Lighter Green */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.download-button:hover {
+    background: #00796B; /* Dark Green */
 }
