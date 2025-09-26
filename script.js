@@ -76,4 +76,52 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    // News page tab and search functionality
+    if (document.querySelector('.content-filter-container')) {
+        const tabs = document.querySelectorAll('.tab-link');
+        const contents = document.querySelectorAll('.tab-content');
+        const searchInput = document.getElementById('news-search-input');
+        const categorySelect = document.getElementById('news-category-select');
+        const searchButton = document.getElementById('news-search-button');
+
+        // Tab switching
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = document.getElementById(tab.dataset.tab);
+
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                contents.forEach(c => c.classList.remove('active'));
+                target.classList.add('active');
+            });
+        });
+
+        // Search functionality
+        const filterContent = () => {
+            const searchText = searchInput.value.toLowerCase();
+            const category = categorySelect.value;
+
+            document.querySelectorAll('#news .news-card, #announcements .news-card').forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const cardCategory = card.dataset.category;
+
+                const textMatch = title.includes(searchText);
+                const categoryMatch = (category === 'all' || cardCategory === category);
+
+                if (textMatch && categoryMatch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        };
+
+        searchButton.addEventListener('click', filterContent);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') filterContent();
+        });
+        categorySelect.addEventListener('change', filterContent);
+    }
 });

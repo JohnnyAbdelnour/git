@@ -43,50 +43,69 @@
                 <h1>الأخبار والنشاطات</h1>
             </section>
 
-            <section class="news-grid-section">
-                <div class="news-grid-container">
-                    <!-- News Item 1 -->
-                    <div class="news-card">
-                        <img src="https://picsum.photos/400/250?random=7" alt="صورة خبر">
-                        <div class="news-card-content">
-                            <span class="news-date">25 سبتمبر 2025</span>
-                            <h3>افتتاح حديقة عامة جديدة</h3>
-                            <p>تم افتتاح حديقة "الأمل" الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
-                    <!-- News Item 2 -->
-                    <div class="news-card">
-                        <img src="https://picsum.photos/400/250?random=8" alt="صورة مشروع">
-                        <div class="news-card-content">
-                             <span class="news-date">24 سبتمبر 2025</span>
-                            <h3>مشروع تطوير الطرقات</h3>
-                            <p>بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
-                    <!-- News Item 3 -->
-                    <div class="news-card">
-                        <img src="https://picsum.photos/400/250?random=9" alt="صورة نشاط">
-                        <div class="news-card-content">
-                            <span class="news-date">23 سبتمبر 2025</span>
-                            <h3>حملة تشجير واسعة</h3>
-                            <p>شارك العشرات من المتطوعين في حملة التشجير التي نظمتها البلدية على أطراف المدينة.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
-                     <!-- News Item 4 -->
-                    <div class="news-card">
-                        <img src="https://picsum.photos/400/250?random=10" alt="صورة خبر">
-                        <div class="news-card-content">
-                            <span class="news-date">22 سبتمبر 2025</span>
-                            <h3>ندوة حول أهمية فرز النفايات</h3>
-                            <p>نظمت البلدية ندوة توعوية حول أهمية فرز النفايات من المصدر للحفاظ على البيئة.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
+            <div class="content-filter-container">
+                <!-- Tabs Sub-menu -->
+                <div class="tabs-container">
+                    <button class="tab-link active" data-tab="news">الأخبار والنشاطات</button>
+                    <button class="tab-link" data-tab="announcements">الاعلانات</button>
                 </div>
-            </section>
+
+                <!-- Search Bar -->
+                <div class="search-bar-container">
+                    <input type="text" id="news-search-input" placeholder="ابحث بالكلمة المفتاحية...">
+                    <select id="news-category-select">
+                        <option value="all">كل الفئات</option>
+                        <option value="projects">مشاريع</option>
+                        <option value="events">نشاطات</option>
+                    </select>
+                    <button id="news-search-button">بحث</button>
+                </div>
+            </div>
+
+            <!-- Content Panels -->
+            <div id="news" class="tab-content active">
+                <section class="news-grid-section">
+                    <div class="news-grid-container">
+                        <!-- News Item 1 -->
+                        <div class="news-card" data-category="events">
+                            <img src="https://picsum.photos/400/250?random=7" alt="صورة خبر">
+                            <div class="news-card-content">
+                                <span class="news-date">25 سبتمبر 2025</span>
+                                <h3>افتتاح حديقة عامة جديدة</h3>
+                                <p>تم افتتاح حديقة "الأمل" الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.</p>
+                                <a href="#" class="card-button">إقرأ المزيد</a>
+                            </div>
+                        </div>
+                        <!-- News Item 2 -->
+                        <div class="news-card" data-category="projects">
+                            <img src="https://picsum.photos/400/250?random=8" alt="صورة مشروع">
+                            <div class="news-card-content">
+                                <span class="news-date">24 سبتمبر 2025</span>
+                                <h3>مشروع تطوير الطرقات</h3>
+                                <p>بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.</p>
+                                <a href="#" class="card-button">إقرأ المزيد</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="announcements" class="tab-content">
+                <section class="news-grid-section">
+                    <div class="news-grid-container">
+                        <!-- Announcement Item 1 -->
+                        <div class="news-card" data-category="announcements">
+                            <img src="https://picsum.photos/400/250?random=11" alt="صورة اعلان">
+                            <div class="news-card-content">
+                                <span class="news-date">20 سبتمبر 2025</span>
+                                <h3>إعلان عن مناقصة عامة</h3>
+                                <p>تعلن بلدية زان عن مناقصة عامة لتوريد وتركيب أعمدة إنارة للشوارع الرئيسية.</p>
+                                <a href="#" class="card-button">التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     </main>
     <footer>

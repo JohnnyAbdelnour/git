@@ -529,6 +529,79 @@ footer {
     line-height: 1.6;
 }
 
+/* Tabs and Search Styles */
+.content-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tabs-container {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tab-link {
+    background: #fff;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Cairo', sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+.tab-link.active {
+    background: #00796B; /* Dark Green */
+    color: #fff;
+}
+
+.tab-link:not(.active):hover {
+    background: #f0f0f0;
+}
+
+.search-bar-container {
+    display: flex;
+    gap: 10px;
+}
+
+#news-search-input, #news-category-select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-family: 'Cairo', sans-serif;
+}
+
+#news-search-button {
+    padding: 10px 20px;
+    background: #009688; /* Lighter Green */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+#news-search-button:hover {
+    background: #00796B; /* Dark Green */
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+
 /* Responsive Design */
 .menu-toggle {
     display: none; /* Hidden by default on desktop */
