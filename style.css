@@ -466,6 +466,69 @@ footer {
     background: #00796B; /* Dark Green */
 }
 
+/* News Page Styles */
+.section-title-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+.section-title-link:hover .section-title {
+    color: #009688; /* Lighter Green */
+}
+
+.news-grid-section {
+    padding: 40px 0;
+}
+
+.news-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.news-card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.news-date {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.news-card-content h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #00796B; /* Dark Green */
+}
+
+.news-card-content p {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
 /* Responsive Design */
 .menu-toggle {
     display: none; /* Hidden by default on desktop */
