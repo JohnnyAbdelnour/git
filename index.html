@@ -73,9 +73,9 @@
             <section class="quick-links">
                  <h3>روابط سريعة</h3>
                  <div class="links-container">
-                    <a href="#" class="link-box">المعاملات</a>
-                    <a href="#" class="link-box">المشاريع</a>
-                    <a href="#" class="link-box">الشكاوى والاقتراحات</a>
+                    <a href="services.html" class="link-box">الخدمات الإدارية</a>
+                    <a href="projects.html" class="link-box">المشاريع</a>
+                    <a href="contact.html" class="link-box">الشكاوى والاقتراحات</a>
                  </div>
             </section>
 
@@ -87,7 +87,7 @@
                         <div class="card-content">
                             <h3>افتتاح حديقة عامة جديدة</h3>
                             <p>تم افتتاح حديقة "الأمل" الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.</p>
-                            <a href="news.html" class="card-button">إقرأ المزيد</a>
+                            <a href="#" class="card-button">إقرأ المزيد</a>
                         </div>
                     </div>
                     <div class="card">
@@ -95,7 +95,7 @@
                         <div class="card-content">
                             <h3>مشروع تطوير الطرقات</h3>
                             <p>بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.</p>
-                            <a href="news.html" class="card-button">إقرأ المزيد</a>
+                            <a href="#" class="card-button">إقرأ المزيد</a>
                         </div>
                     </div>
                     <div class="card">
@@ -103,7 +103,37 @@
                         <div class="card-content">
                             <h3>حملة تشجير واسعة</h3>
                             <p>شارك العشرات من المتطوعين في حملة التشجير التي نظمتها البلدية على أطراف المدينة.</p>
-                            <a href="news.html" class="card-button">إقرأ المزيد</a>
+                            <a href="#" class="card-button">إقرأ المزيد</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card-section">
+                <a href="projects.html" class="section-title-link"><h2 class="section-title">المشاريع</h2></a>
+                <div class="cards-container">
+                    <div class="card">
+                        <img src="https://picsum.photos/400/250?random=12" alt="صورة مشروع">
+                        <div class="card-content">
+                            <h3>توسعة شبكة الصرف الصحي</h3>
+                            <p>مشروع يهدف إلى توسعة شبكة الصرف الصحي لتشمل الأحياء الجديدة في المدينة.</p>
+                            <a href="projects.html" class="card-button">التفاصيل</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://picsum.photos/400/250?random=13" alt="صورة مشروع">
+                        <div class="card-content">
+                            <h3>بناء مركز ثقافي جديد</h3>
+                            <p>وضع حجر الأساس لبناء مركز ثقافي متكامل يضم مكتبة عامة ومسرحًا وقاعات للأنشطة.</p>
+                            <a href="projects.html" class="card-button">التفاصيل</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://picsum.photos/400/250?random=8" alt="صورة مشروع">
+                        <div class="card-content">
+                            <h3>مشروع تطوير الطرقات</h3>
+                            <p>بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.</p>
+                            <a href="projects.html" class="card-button">التفاصيل</a>
                         </div>
                     </div>
                 </div>
@@ -140,5 +170,17 @@
         </div>
     </footer>
     <script src="script.js"></script>
+
+    <!-- Modal Popup -->
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="https://picsum.photos/800/300?random=1" alt="Modal Header Image" class="modal-header-image">
+            <div class="modal-body">
+                <h2 id="modal-title"></h2>
+                <p id="modal-text"></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

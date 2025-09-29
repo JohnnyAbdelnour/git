@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الأخبار والنشاطات - بلدية زان</title>
+    <title>المشاريع - بلدية زان</title>
     <link rel="icon" href="Logo Zan.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,72 +40,43 @@
     <main>
         <div class="container">
             <section class="page-header">
-                <h1>الأخبار والنشاطات</h1>
+                <h1>المشاريع</h1>
             </section>
 
-            <div class="content-filter-container">
-                <!-- Tabs Sub-menu -->
-                <div class="tabs-container">
-                    <button class="tab-link active" data-tab="news">الأخبار والنشاطات</button>
-                    <button class="tab-link" data-tab="announcements">الاعلانات</button>
-                </div>
-
-                <!-- Search Bar -->
-                <div class="search-bar-container">
-                    <input type="text" id="news-search-input" placeholder="ابحث بالكلمة المفتاحية...">
-                    <select id="news-category-select">
-                        <option value="all">كل الفئات</option>
-                        <option value="projects">مشاريع</option>
-                        <option value="events">نشاطات</option>
-                    </select>
-                    <button id="news-search-button">بحث</button>
-                </div>
-            </div>
-
-            <!-- Content Panels -->
-            <div id="news" class="tab-content active">
-                <section class="news-grid-section">
-                    <div class="news-grid-container">
-                        <!-- News Item 1 -->
-                        <div class="news-card" data-category="events">
-                            <img src="https://picsum.photos/400/250?random=7" alt="صورة خبر">
-                            <div class="news-card-content">
-                                <span class="news-date">25 سبتمبر 2025</span>
-                                <h3>افتتاح حديقة عامة جديدة</h3>
-                                <p>تم افتتاح حديقة "الأمل" الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.</p>
-                                <a href="#" class="card-button">إقرأ المزيد</a>
-                            </div>
-                        </div>
-                        <!-- News Item 2 -->
-                        <div class="news-card" data-category="projects">
-                            <img src="https://picsum.photos/400/250?random=8" alt="صورة مشروع">
-                            <div class="news-card-content">
-                                <span class="news-date">24 سبتمبر 2025</span>
-                                <h3>مشروع تطوير الطرقات</h3>
-                                <p>بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.</p>
-                                <a href="#" class="card-button">إقرأ المزيد</a>
-                            </div>
+            <section class="news-grid-section">
+                <div class="news-grid-container">
+                    <!-- Project Item 1 -->
+                    <div class="news-card" data-category="projects">
+                        <img src="https://picsum.photos/400/250?random=12" alt="صورة مشروع">
+                        <div class="news-card-content">
+                            <span class="news-date">28 سبتمبر 2025</span>
+                            <h3>توسعة شبكة الصرف الصحي</h3>
+                            <p>مشروع يهدف إلى توسعة شبكة الصرف الصحي لتشمل الأحياء الجديدة في المدينة.</p>
+                            <a href="#" class="card-button">التفاصيل</a>
                         </div>
                     </div>
-                </section>
-            </div>
-
-            <div id="announcements" class="tab-content">
-                <section class="news-grid-section">
-                    <div class="news-grid-container">
-                        <!-- Announcement Item 1 -->
-                        <div class="news-card" data-category="announcements">
-                            <img src="https://picsum.photos/400/250?random=11" alt="صورة اعلان">
-                            <div class="news-card-content">
-                                <span class="news-date">20 سبتمبر 2025</span>
-                                <h3>إعلان عن مناقصة عامة</h3>
-                                <p>تعلن بلدية زان عن مناقصة عامة لتوريد وتركيب أعمدة إنارة للشوارع الرئيسية.</p>
-                                <a href="#" class="card-button">التفاصيل</a>
-                            </div>
+                    <!-- Project Item 2 -->
+                    <div class="news-card" data-category="projects">
+                        <img src="https://picsum.photos/400/250?random=13" alt="صورة مشروع">
+                        <div class="news-card-content">
+                            <span class="news-date">15 سبتمبر 2025</span>
+                            <h3>بناء مركز ثقافي جديد</h3>
+                            <p>وضع حجر الأساس لبناء مركز ثقافي متكامل يضم مكتبة عامة ومسرحًا وقاعات للأنشطة.</p>
+                            <a href="#" class="card-button">التفاصيل</a>
                         </div>
                     </div>
-                </section>
-            </div>
+                    <!-- Project Item 3 -->
+                    <div class="news-card" data-category="projects">
+                        <img src="https://picsum.photos/400/250?random=8" alt="صورة مشروع">
+                        <div class="news-card-content">
+                            <span class="news-date">24 سبتمبر 2025</span>
+                            <h3>مشروع تطوير الطرقات</h3>
+                            <p>بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.</p>
+                            <a href="#" class="card-button">التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
     <footer>

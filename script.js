@@ -124,4 +124,43 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         categorySelect.addEventListener('change', filterContent);
     }
+
+    // Modal Popup functionality
+    const modal = document.getElementById('details-modal');
+    if (modal) {
+        const modalTitle = document.getElementById('modal-title');
+        const modalText = document.getElementById('modal-text');
+        const closeButton = document.querySelector('.close-button');
+        const cardButtons = document.querySelectorAll('.card-button');
+
+        cardButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent default anchor behavior
+
+                // Find the parent card element
+                const card = e.target.closest('.card, .news-card');
+                if (card) {
+                    const title = card.querySelector('h3').textContent;
+                    const text = card.querySelector('p').textContent;
+
+                    // Populate and show the modal
+                    modalTitle.textContent = title;
+                    modalText.textContent = text;
+                    modal.style.display = 'block';
+                }
+            });
+        });
+
+        // Close the modal when the close button is clicked
+        closeButton.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close the modal when clicking outside of the modal content
+        window.addEventListener('click', function(e) {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
 });
