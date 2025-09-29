@@ -601,6 +601,104 @@ footer {
     display: block;
 }
 
+/* Contact Page Styles */
+.map-container {
+    margin-bottom: 40px;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures the iframe respects the border-radius */
+}
+
+.contact-info-section {
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.contact-info-section h2 {
+    text-align: center;
+    color: #00796B; /* Dark Green */
+    margin-bottom: 30px;
+}
+
+.contact-details {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
+}
+
+.contact-item i {
+    font-size: 24px;
+    color: #009688; /* Lighter Green */
+}
+
+.contact-form-section {
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.contact-form-section h2 {
+    text-align: center;
+    color: #00796B; /* Dark Green */
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    box-sizing: border-box; /* Important for padding and width calculation */
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: #009688; /* Lighter Green */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-button:hover {
+    background: #00796B; /* Dark Green */
+}
+
 
 /* Responsive Design */
 .menu-toggle {
