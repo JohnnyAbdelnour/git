@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
@@ -8,8 +7,8 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // View engine setup
@@ -488,7 +487,7 @@ adminRouter.get('/pages', (req, res) => {
 });
 
 adminRouter.get('/pages/edit/home', (req, res) => {
-    res.render('edit-home');
+    res.render('edit-home', { title: 'Edit Home Page' });
 });
 
 adminRouter.get('/pages/edit/:pageName', (req, res) => {
