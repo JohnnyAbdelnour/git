@@ -1,0 +1,46 @@
+{
+  "about": {
+    "title": "عن بلدية زان",
+    "text": "نسعى لتكون بلدية زان نموذجًا في التطور والخدمة المجتمعية."
+  },
+  "links": {
+    "title": "روابط مهمة",
+    "items": [
+      {
+        "text": "فرص العمل",
+        "url": "#"
+      },
+      {
+        "text": "المناقصات",
+        "url": "#"
+      },
+      {
+        "text": "البيئة",
+        "url": "#"
+      }
+    ]
+  },
+  "social": {
+    "title": "تابعونا",
+    "items": [
+      {
+        "name": "Facebook",
+        "url": "#",
+        "icon": "fab fa-facebook-f"
+      },
+      {
+        "name": "Twitter",
+        "url": "#",
+        "icon": "fab fa-twitter"
+      },
+      {
+        "name": "Instagram",
+        "url": "#",
+        "icon": "fab fa-instagram"
+      }
+    ]
+  },
+  "bottom": {
+    "text": "جميع الحقوق محفوظة &copy; 2023 بلدية زان. تصميم وتطوير Johnny Abdelnour"
+  }
+}

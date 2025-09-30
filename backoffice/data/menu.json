@@ -1,0 +1,22 @@
+[
+  {
+    "text": "الرئيسية",
+    "url": "index.html"
+  },
+  {
+    "text": "عن البلدية",
+    "url": "about.html"
+  },
+  {
+    "text": "الخدمات الإدارية",
+    "url": "services.html"
+  },
+  {
+    "text": "الأخبار والنشاطات",
+    "url": "news.html"
+  },
+  {
+    "text": "اتصل بنا",
+    "url": "contact.html"
+  }
+]

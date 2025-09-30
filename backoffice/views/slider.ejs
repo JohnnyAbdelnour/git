@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <h1><%= title %></h1>
+
+    <h2>Add New Slide</h2>
+    <form action="/admin/slider" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <input type="text" name="title" placeholder="Caption Title" required>
+        <input type="text" name="text" placeholder="Caption Text" required>
+        <button type="submit">Add Slide</button>
+    </form>
+
+    <h2>Existing Slides</h2>
+    <ul>
+        <% slider.forEach((slide, index) => { %>
+            <li>
+                <img src="/public/<%= slide.image %>" alt="<%= slide.caption.title %>" width="200">
+                <form action="/admin/slider/update" method="POST" enctype="multipart/form-data" style="display:inline;">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <input type="file" name="image">
+                    <input type="text" name="title" value="<%= slide.caption.title %>" required>
+                    <input type="text" name="text" value="<%= slide.caption.text %>" required>
+                    <button type="submit">Update</button>
+                </form>
+                <form action="/admin/slider/delete" method="POST" style="display:inline;">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+
+    <a href="/admin">Back to Dashboard</a>
+</body>
+</html>

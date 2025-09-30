@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <h1><%= title %></h1>
+
+    <h2>Add New Menu Item</h2>
+    <form action="/admin/menu" method="POST">
+        <input type="text" name="text" placeholder="Menu Text" required>
+        <input type="text" name="url" placeholder="Menu URL" required>
+        <button type="submit">Add Item</button>
+    </form>
+
+    <h2>Existing Menu Items</h2>
+    <ul>
+        <% menu.forEach((item, index) => { %>
+            <li>
+                <form action="/admin/menu/update" method="POST" style="display:inline;">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <input type="text" name="text" value="<%= item.text %>" required>
+                    <input type="text" name="url" value="<%= item.url %>" required>
+                    <button type="submit">Update</button>
+                </form>
+                <form action="/admin/menu/delete" method="POST" style="display:inline;">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+
+    <a href="/admin">Back to Dashboard</a>
+</body>
+</html>

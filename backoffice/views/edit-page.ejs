@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <h1><%= title %></h1>
+    <form action="/admin/pages/edit/<%= pageName %>" method="POST">
+        <% function renderForm(obj, parentKey = '') { %>
+            <% for (const key in obj) { %>
+                <% const newKey = parentKey ? `${parentKey}[${key}]` : key; %>
+                <% if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) { %>
+                    <fieldset>
+                        <legend><%= key.charAt(0).toUpperCase() + key.slice(1) %></legend>
+                        <%- renderForm(obj[key], newKey) %>
+                    </fieldset>
+                <% } else if (!Array.isArray(obj[key])) { %>
+                    <div>
+                        <label for="<%= newKey %>"><%= key.charAt(0).toUpperCase() + key.slice(1) %>:</label>
+                        <% if (key.includes('content') || key.includes('description') || key.includes('note')) { %>
+                            <textarea id="<%= newKey %>" name="<%= newKey %>" rows="5"><%= obj[key] %></textarea>
+                        <% } else { %>
+                            <input type="text" id="<%= newKey %>" name="<%= newKey %>" value="<%= obj[key] %>">
+                        <% } %>
+                    </div>
+                <% } %>
+            <% } %>
+        <% } %>
+        <%- renderForm(pageData) %>
+        <button type="submit">Update Page</button>
+    </form>
+
+    <% if (pageName === 'services') { %>
+        <fieldset>
+            <legend>Downloadable Forms</legend>
+            <h3>Add New Form</h3>
+            <form action="/admin/services/forms/add" method="POST" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Form Name" required>
+                <input type="file" name="form" required>
+                <button type="submit">Add Form</button>
+            </form>
+            <h3>Existing Forms</h3>
+            <ul>
+                <% pageData.forms.items.forEach((form, index) => { %>
+                    <li>
+                        <%= form.name %>
+                        <form action="/admin/services/forms/delete" method="POST" style="display:inline;">
+                            <input type="hidden" name="index" value="<%= index %>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                <% }); %>
+            </ul>
+        </fieldset>
+    <% } %>
+
+    <a href="/admin/pages">Back to Pages</a>
+    <br>
+    <a href="/admin">Back to Dashboard</a>
+</body>
+</html>
