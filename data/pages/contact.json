@@ -1,0 +1,20 @@
+{
+  "title": "اتصل بنا",
+  "header": "تواصل مع بلدية زان",
+  "contactInfo": {
+    "title": "معلومات الاتصال",
+    "address": "شارع البلدية، زان، لبنان",
+    "phone": "+961 X XXX XXX",
+    "email": "info@zan-municipality.gov.lb"
+  },
+  "contactForm": {
+    "title": "أرسل لنا رسالة",
+    "namePlaceholder": "الاسم الكامل",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "messagePlaceholder": "رسالتك",
+    "submitButton": "إرسال"
+  },
+  "map": {
+    "title": "موقعنا على الخريطة"
+  }
+}

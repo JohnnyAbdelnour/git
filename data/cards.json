@@ -5,6 +5,7 @@
     "items": [
       {
         "image": "https://picsum.photos/400/250?random=4",
+        "bannerImage": "https://picsum.photos/800/200?random=1",
         "title": "افتتاح حديقة عامة جديدة",
         "description": "تم افتتاح حديقة 'الأمل' الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.",
         "buttonText": "إقرأ المزيد",
@@ -12,6 +13,7 @@
       },
       {
         "image": "https://picsum.photos/400/250?random=5",
+        "bannerImage": "https://picsum.photos/800/200?random=2",
         "title": "مشروع تطوير الطرقات",
         "description": "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
         "buttonText": "إقرأ المزيد",
@@ -19,6 +21,7 @@
       },
       {
         "image": "https://picsum.photos/400/250?random=6",
+        "bannerImage": "https://picsum.photos/800/200?random=3",
         "title": "حملة تشجير واسعة",
         "description": "شارك العشرات من المتطوعين في حملة التشجير التي نظمتها البلدية على أطراف المدينة.",
         "buttonText": "إقرأ المزيد",
@@ -32,6 +35,7 @@
     "items": [
       {
         "image": "https://picsum.photos/400/250?random=12",
+        "bannerImage": "https://picsum.photos/800/200?random=4",
         "title": "توسعة شبكة الصرف الصحي",
         "description": "مشروع يهدف إلى توسعة شبكة الصرف الصحي لتشمل الأحياء الجديدة في المدينة.",
         "buttonText": "التفاصيل",
@@ -39,6 +43,7 @@
       },
       {
         "image": "https://picsum.photos/400/250?random=13",
+        "bannerImage": "https://picsum.photos/800/200?random=5",
         "title": "بناء مركز ثقافي جديد",
         "description": "وضع حجر الأساس لبناء مركز ثقافي متكامل يضم مكتبة عامة ومسرحًا وقاعات للأنشطة.",
         "buttonText": "التفاصيل",
@@ -46,6 +51,7 @@
       },
       {
         "image": "https://picsum.photos/400/250?random=8",
+        "bannerImage": "https://picsum.photos/800/200?random=6",
         "title": "مشروع تطوير الطرقات",
         "description": "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
         "buttonText": "التفاصيل",

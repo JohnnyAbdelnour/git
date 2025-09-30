@@ -243,7 +243,7 @@ adminRouter.get('/cards', (req, res) => {
     });
 });
 
-adminRouter.post('/cards/:section', upload.single('image'), (req, res) => {
+adminRouter.post('/cards/:section', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'bannerImage', maxCount: 1 }]), (req, res) => {
     const { section } = req.params;
     fs.readFile(path.join(__dirname, 'data', 'cards.json'), 'utf8', (err, data) => {
         if (err) {
@@ -252,7 +252,8 @@ adminRouter.post('/cards/:section', upload.single('image'), (req, res) => {
         }
         const cards = JSON.parse(data);
         const newCard = {
-            image: req.file ? `uploads/${req.file.filename}` : '',
+            image: req.files['image'] ? `uploads/${req.files['image'][0].filename}` : '',
+            bannerImage: req.files['bannerImage'] ? `uploads/${req.files['bannerImage'][0].filename}` : '',
             title: req.body.title,
             description: req.body.description,
             buttonText: req.body.buttonText,
@@ -269,7 +270,7 @@ adminRouter.post('/cards/:section', upload.single('image'), (req, res) => {
     });
 });
 
-adminRouter.post('/cards/:section/update', upload.single('image'), (req, res) => {
+adminRouter.post('/cards/:section/update', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'bannerImage', maxCount: 1 }]), (req, res) => {
     const { section } = req.params;
     fs.readFile(path.join(__dirname, 'data', 'cards.json'), 'utf8', (err, data) => {
         if (err) {
@@ -284,12 +285,21 @@ adminRouter.post('/cards/:section/update', upload.single('image'), (req, res) =>
             item.description = req.body.description;
             item.buttonText = req.body.buttonText;
             item.buttonLink = req.body.buttonLink;
-            if (req.file) {
+
+            if (req.files['image']) {
                 const oldImagePath = path.join(__dirname, 'public', item.image);
-                if (fs.existsSync(oldImagePath) && !item.image.startsWith('http')) {
+                if (item.image && fs.existsSync(oldImagePath) && !item.image.startsWith('http')) {
                     fs.unlinkSync(oldImagePath);
                 }
-                item.image = `uploads/${req.file.filename}`;
+                item.image = `uploads/${req.files['image'][0].filename}`;
+            }
+
+            if (req.files['bannerImage']) {
+                const oldBannerPath = path.join(__dirname, 'public', item.bannerImage);
+                if (item.bannerImage && fs.existsSync(oldBannerPath) && !item.bannerImage.startsWith('http')) {
+                    fs.unlinkSync(oldBannerPath);
+                }
+                item.bannerImage = `uploads/${req.files['bannerImage'][0].filename}`;
             }
         }
         fs.writeFile(path.join(__dirname, 'data', 'cards.json'), JSON.stringify(cards, null, 2), (err) => {
@@ -313,10 +323,17 @@ adminRouter.post('/cards/:section/delete', (req, res) => {
         const index = req.body.index;
         if (cards[section] && cards[section].items[index]) {
             const item = cards[section].items[index];
+
             const imagePath = path.join(__dirname, 'public', item.image);
-            if (fs.existsSync(imagePath) && !item.image.startsWith('http')) {
+            if (item.image && fs.existsSync(imagePath) && !item.image.startsWith('http')) {
                 fs.unlinkSync(imagePath);
             }
+
+            const bannerPath = path.join(__dirname, 'public', item.bannerImage);
+            if (item.bannerImage && fs.existsSync(bannerPath) && !item.bannerImage.startsWith('http')) {
+                fs.unlinkSync(bannerPath);
+            }
+
             cards[section].items.splice(index, 1);
         }
         fs.writeFile(path.join(__dirname, 'data', 'cards.json'), JSON.stringify(cards, null, 2), (err) => {
@@ -468,6 +485,10 @@ adminRouter.get('/pages', (req, res) => {
         const pageNames = files.map(file => file.replace('.json', ''));
         res.render('pages', { title: 'Manage Pages', pages: pageNames });
     });
+});
+
+adminRouter.get('/pages/edit/home', (req, res) => {
+    res.render('edit-home');
 });
 
 adminRouter.get('/pages/edit/:pageName', (req, res) => {

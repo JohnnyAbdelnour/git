@@ -79,7 +79,10 @@
                     <div class="cards-container">
                         <% cards[sectionKey].items.forEach(card => { %>
                             <div class="card" data-description="<%= card.description %>">
-                                <img src="<%= card.image.startsWith('http') ? card.image : '/public/' + card.image %>" alt="صورة">
+                                <% if (card.bannerImage) { %>
+                                    <img src="<%= card.bannerImage.startsWith('http') ? card.bannerImage : '/public/' + card.bannerImage %>" alt="<%= card.title %> Banner" class="card-banner">
+                                <% } %>
+                                <img src="<%= card.image.startsWith('http') ? card.image : '/public/' + card.image %>" alt="صورة" class="card-image">
                                 <div class="card-content">
                                     <h3><%= card.title %></h3>
                                     <a href="<%= card.buttonLink %>" class="card-button"><%= card.buttonText %></a>
