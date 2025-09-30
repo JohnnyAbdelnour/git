@@ -14,6 +14,16 @@
             <li><a href="/admin/pages/edit/<%= page %>"><%= page.charAt(0).toUpperCase() + page.slice(1) %></a></li>
         <% }); %>
     </ul>
+
+    <h2>Create New Page</h2>
+    <form action="/admin/pages/create" method="POST">
+        <div>
+            <label for="pageName">Page Name (e.g., 'about-us', 'contact'):</label>
+            <input type="text" id="pageName" name="pageName" required pattern="[a-z0-9-]+">
+        </div>
+        <button type="submit">Create Page</button>
+    </form>
+
     <a href="/admin">Back to Dashboard</a>
 </body>
 </html>

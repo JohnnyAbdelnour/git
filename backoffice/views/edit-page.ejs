@@ -8,29 +8,125 @@
 </head>
 <body>
     <h1><%= title %></h1>
-    <form action="/admin/pages/edit/<%= pageName %>" method="POST">
-        <% function renderForm(obj, parentKey = '') { %>
-            <% for (const key in obj) { %>
-                <% const newKey = parentKey ? `${parentKey}[${key}]` : key; %>
-                <% if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) { %>
+    <a href="/admin/pages">Back to Pages</a> | <a href="/admin">Back to Dashboard</a>
+
+    <form action="/admin/pages/edit/<%= pageName %>" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
+
+        <% if (pageName === 'index') { %>
+
+            <div>
+                <label for="title">Page Title:</label>
+                <input type="text" id="title" name="title" value="<%= pageData.title %>" style="width: 100%;">
+            </div>
+
+            <fieldset>
+                <legend>Slider</legend>
+                <% pageData.slider.forEach((slide, index) => { %>
                     <fieldset>
-                        <legend><%= key.charAt(0).toUpperCase() + key.slice(1) %></legend>
-                        <%- renderForm(obj[key], newKey) %>
+                        <legend>Slide <%= index + 1 %></legend>
+                        <input type="hidden" name="slider[<%= index %>][original_image]" value="<%= slide.image %>">
+                        <div>
+                            <label>Caption Title:</label>
+                            <input type="text" name="slider[<%= index %>][caption][title]" value="<%= slide.caption.title %>">
+                        </div>
+                        <div>
+                            <label>Caption Text:</label>
+                            <textarea name="slider[<%= index %>][caption][text]"><%= slide.caption.text %></textarea>
+                        </div>
+                        <div>
+                            <label>Image:</label>
+                            <input type="file" name="slider-image-<%= index %>">
+                            <% if (slide.image) { %>
+                                <img src="<%= slide.image.startsWith('http') ? slide.image : '/public/' + slide.image %>" alt="Slider Image" width="100">
+                            <% } %>
+                        </div>
                     </fieldset>
-                <% } else if (!Array.isArray(obj[key])) { %>
-                    <div>
-                        <label for="<%= newKey %>"><%= key.charAt(0).toUpperCase() + key.slice(1) %>:</label>
-                        <% if (key.includes('content') || key.includes('description') || key.includes('note')) { %>
-                            <textarea id="<%= newKey %>" name="<%= newKey %>" rows="5"><%= obj[key] %></textarea>
+                <% }); %>
+            </fieldset>
+
+            <fieldset>
+                <legend>Cards</legend>
+                <% Object.keys(pageData.cards).forEach(sectionKey => { %>
+                    <% const section = pageData.cards[sectionKey]; %>
+                    <fieldset>
+                        <legend>Section: <%= section.title %></legend>
+                        <div>
+                            <label>Section Title:</label>
+                            <input type="text" name="cards[<%= sectionKey %>][title]" value="<%= section.title %>">
+                        </div>
+                        <div>
+                            <label>Section Link:</label>
+                            <input type="text" name="cards[<%= sectionKey %>][link]" value="<%= section.link %>">
+                        </div>
+
+                        <% section.items.forEach((card, cardIndex) => { %>
+                            <fieldset>
+                                <legend>Card <%= cardIndex + 1 %></legend>
+                                <input type="hidden" name="cards[<%= sectionKey %>][items][<%= cardIndex %>][original_image]" value="<%= card.image %>">
+                                <input type="hidden" name="cards[<%= sectionKey %>][items][<%= cardIndex %>][original_bannerImage]" value="<%= card.bannerImage %>">
+                                <div><label>Title:</label><input type="text" name="cards[<%= sectionKey %>][items][<%= cardIndex %>][title]" value="<%= card.title %>"></div>
+                                <div><label>Description:</label><textarea name="cards[<%= sectionKey %>][items][<%= cardIndex %>][description]"><%= card.description %></textarea></div>
+                                <div><label>Button Text:</label><input type="text" name="cards[<%= sectionKey %>][items][<%= cardIndex %>][buttonText]" value="<%= card.buttonText %>"></div>
+                                <div><label>Button Link:</label><input type="text" name="cards[<%= sectionKey %>][items][<%= cardIndex %>][buttonLink]" value="<%= card.buttonLink %>"></div>
+                                <div>
+                                    <label>Card Image:</label>
+                                    <input type="file" name="card-image-<%= sectionKey %>-<%= cardIndex %>">
+                                    <% if (card.image) { %><img src="<%= card.image.startsWith('http') ? card.image : '/public/' + card.image %>" alt="Card Image" width="100"><% } %>
+                                </div>
+                                <div>
+                                    <label>Banner Image:</label>
+                                    <input type="file" name="card-bannerImage-<%= sectionKey %>-<%= cardIndex %>">
+                                    <% if (card.bannerImage) { %><img src="<%= card.bannerImage.startsWith('http') ? card.bannerImage : '/public/' + card.bannerImage %>" alt="Banner Image" width="100"><% } %>
+                                </div>
+                            </fieldset>
+                        <% }); %>
+                    </fieldset>
+                <% }); %>
+            </fieldset>
+
+        <% } else { %>
+            <% function renderForm(obj, parentKey = '') { %>
+                <% for (const key in obj) { %>
+                    <% if (obj.hasOwnProperty(key)) { %>
+                        <% const newKey = parentKey ? `${parentKey}[${key}]` : key; %>
+                        <% if (Array.isArray(obj[key])) { %>
+                            <fieldset>
+                                <legend><%= key.charAt(0).toUpperCase() + key.slice(1) %></legend>
+                                <% obj[key].forEach((item, index) => { %>
+                                    <fieldset>
+                                        <legend>Item <%= index + 1 %></legend>
+                                        <%- renderForm(item, `${newKey}[${index}]`) %>
+                                    </fieldset>
+                                <% }); %>
+                            </fieldset>
+                        <% } else if (typeof obj[key] === 'object' && obj[key] !== null) { %>
+                            <fieldset>
+                                <legend><%= key.charAt(0).toUpperCase() + key.slice(1) %></legend>
+                                <%- renderForm(obj[key], newKey) %>
+                            </fieldset>
                         <% } else { %>
-                            <input type="text" id="<%= newKey %>" name="<%= newKey %>" value="<%= obj[key] %>">
+                            <div>
+                                <label for="<%= newKey %>"><%= key.charAt(0).toUpperCase() + key.slice(1) %>:</label>
+                                <% if (String(key).includes('content') || String(key).includes('description') || String(key).includes('text')) { %>
+                                    <textarea id="<%= newKey %>" name="<%= newKey %>" rows="5"><%= obj[key] %></textarea>
+                                <% } else if (String(key).toLowerCase().includes('image')) { %>
+                                    <input type="hidden" name="<%= newKey %>" value="<%= obj[key] %>">
+                                    <input type="file" id="<%= newKey %>" name="<%= newKey %>_file">
+                                    <% if (obj[key] && String(obj[key]).length > 0) { %>
+                                        <img src="<%= String(obj[key]).startsWith('http') ? obj[key] : '/public/' + obj[key] %>" alt="<%= key %>" width="100">
+                                    <% } %>
+                                <% } else { %>
+                                    <input type="text" id="<%= newKey %>" name="<%= newKey %>" value="<%= obj[key] %>">
+                                <% } %>
+                            </div>
                         <% } %>
-                    </div>
+                    <% } %>
                 <% } %>
             <% } %>
+            <%- renderForm(pageData) %>
         <% } %>
-        <%- renderForm(pageData) %>
-        <button type="submit">Update Page</button>
+
+        <button type="submit" style="margin-top: 20px; padding: 10px 20px;">Update Page</button>
     </form>
 
     <% if (pageName === 'services') { %>
@@ -57,8 +153,5 @@
         </fieldset>
     <% } %>
 
-    <a href="/admin/pages">Back to Pages</a>
-    <br>
-    <a href="/admin">Back to Dashboard</a>
 </body>
 </html>
