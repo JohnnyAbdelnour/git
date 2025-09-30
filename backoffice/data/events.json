@@ -1,0 +1,27 @@
+{
+  "cultural": {
+    "name": "Cultural Events",
+    "items": [
+      {
+        "title": "Poetry Night",
+        "date": "2024-10-15",
+        "description": "An evening of poetry readings from local artists."
+      },
+      {
+        "title": "Art Exhibition",
+        "date": "2024-11-01",
+        "description": "Showcasing the work of talented painters from the region."
+      }
+    ]
+  },
+  "sports": {
+    "name": "Sports Events",
+    "items": [
+      {
+        "title": "Annual Marathon",
+        "date": "2024-09-20",
+        "description": "Join us for the yearly city marathon. All ages welcome."
+      }
+    ]
+  }
+}

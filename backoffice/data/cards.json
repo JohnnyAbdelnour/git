@@ -1,0 +1,56 @@
+{
+  "news": {
+    "title": "أبرز الأخبار",
+    "link": "news.html",
+    "items": [
+      {
+        "image": "https://picsum.photos/400/250?random=4",
+        "title": "افتتاح حديقة عامة جديدة",
+        "description": "تم افتتاح حديقة 'الأمل' الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.",
+        "buttonText": "إقرأ المزيد",
+        "buttonLink": "#"
+      },
+      {
+        "image": "https://picsum.photos/400/250?random=5",
+        "title": "مشروع تطوير الطرقات",
+        "description": "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
+        "buttonText": "إقرأ المزيد",
+        "buttonLink": "#"
+      },
+      {
+        "image": "https://picsum.photos/400/250?random=6",
+        "title": "حملة تشجير واسعة",
+        "description": "شارك العشرات من المتطوعين في حملة التشجير التي نظمتها البلدية على أطراف المدينة.",
+        "buttonText": "إقرأ المزيد",
+        "buttonLink": "#"
+      }
+    ]
+  },
+  "projects": {
+    "title": "المشاريع",
+    "link": "projects.html",
+    "items": [
+      {
+        "image": "https://picsum.photos/400/250?random=12",
+        "title": "توسعة شبكة الصرف الصحي",
+        "description": "مشروع يهدف إلى توسعة شبكة الصرف الصحي لتشمل الأحياء الجديدة في المدينة.",
+        "buttonText": "التفاصيل",
+        "buttonLink": "#"
+      },
+      {
+        "image": "https://picsum.photos/400/250?random=13",
+        "title": "بناء مركز ثقافي جديد",
+        "description": "وضع حجر الأساس لبناء مركز ثقافي متكامل يضم مكتبة عامة ومسرحًا وقاعات للأنشطة.",
+        "buttonText": "التفاصيل",
+        "buttonLink": "#"
+      },
+      {
+        "image": "https://picsum.photos/400/250?random=8",
+        "title": "مشروع تطوير الطرقات",
+        "description": "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
+        "buttonText": "التفاصيل",
+        "buttonLink": "#"
+      }
+    ]
+  }
+}
