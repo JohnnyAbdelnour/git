@@ -481,29 +481,161 @@ adminRouter.get('/pages/edit/:pageName', (req, res) => {
     });
 });
 
-adminRouter.post('/pages/edit/:pageName', (req, res) => {
+adminRouter.post('/pages/create', (req, res) => {
+    const { pageName } = req.body;
+    if (!pageName || !/^[a-z0-9-]+$/.test(pageName)) {
+        return res.status(400).send('Invalid page name.');
+    }
+
+    const dataFilePath = path.join(__dirname, `data/pages/${pageName}.json`);
+    const viewFilePath = path.join(__dirname, `views/site/${pageName}.ejs`);
+
+    if (fs.existsSync(dataFilePath) || fs.existsSync(viewFilePath)) {
+        return res.status(400).send('Page already exists.');
+    }
+
+    const defaultPageData = {
+        title: pageName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        header: 'Welcome to the new page!',
+        content: 'This is your new page. You can edit this content in the backoffice.'
+    };
+
+    const defaultEjsContent = `
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page.title %></title>
+    <link rel="icon" href="/public/images/LogoZan.png" type="image/png">
+    <link rel="stylesheet" href="/public/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <%- include('../partials/header', { header: header, menu: menu }) %>
+    <main>
+        <div class="container">
+            <section class="page-header">
+                <h1><%= page.header %></h1>
+            </section>
+            <section>
+                <p><%= page.content %></p>
+            </section>
+        </div>
+    </main>
+    <%- include('../partials/footer', { footer: footer }) %>
+    <script src="/public/js/site.js"></script>
+</body>
+</html>
+    `;
+
+    fs.writeFile(dataFilePath, JSON.stringify(defaultPageData, null, 2), (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error creating page data file.');
+        }
+        fs.writeFile(viewFilePath, defaultEjsContent.trim(), (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Error creating page view file.');
+            }
+            res.redirect(`/admin/pages/edit/${pageName}`);
+        });
+    });
+});
+
+adminRouter.post('/pages/edit/:pageName', upload.any(), (req, res) => {
     const { pageName } = req.params;
-    fs.readFile(path.join(__dirname, `data/pages/${pageName}.json`), 'utf8', (err, data) => {
+    const filePath = path.join(__dirname, `data/pages/${pageName}.json`);
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Error reading page data');
         }
-        const pageData = JSON.parse(data);
-        // Recursively update pageData with values from req.body
-        const updateData = (obj, body) => {
-            for (const key in obj) {
-                if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
-                    updateData(obj[key], body);
-                } else {
-                    if (body[key]) {
-                        obj[key] = body[key];
+
+        let pageData = JSON.parse(data);
+        const body = req.body;
+        const files = req.files || [];
+
+        // Create a map of uploaded files for easy access
+        const fileMap = {};
+        files.forEach(file => {
+            fileMap[file.fieldname] = `uploads/${file.filename}`;
+        });
+
+        // Specific handler for the index page
+        if (pageName === 'index') {
+            pageData.title = body.title;
+
+            // Update slider
+            pageData.slider.forEach((slide, index) => {
+                if (body.slider && body.slider[index]) {
+                    slide.caption.title = body.slider[index].caption.title;
+                    slide.caption.text = body.slider[index].caption.text;
+                }
+                const newImage = fileMap[`slider-image-${index}`];
+                if (newImage) {
+                    slide.image = newImage;
+                }
+            });
+
+            // Update cards
+            Object.keys(pageData.cards).forEach(sectionKey => {
+                const section = pageData.cards[sectionKey];
+                if (body.cards && body.cards[sectionKey]) {
+                    section.title = body.cards[sectionKey].title;
+                    section.link = body.cards[sectionKey].link;
+                }
+                section.items.forEach((card, cardIndex) => {
+                    if (body.cards && body.cards[sectionKey] && body.cards[sectionKey].items && body.cards[sectionKey].items[cardIndex]) {
+                        const cardBody = body.cards[sectionKey].items[cardIndex];
+                        card.title = cardBody.title;
+                        card.description = cardBody.description;
+                        card.buttonText = cardBody.buttonText;
+                        card.buttonLink = cardBody.buttonLink;
+                    }
+                    const newCardImage = fileMap[`card-image-${sectionKey}-${cardIndex}`];
+                    if (newCardImage) {
+                        card.image = newCardImage;
+                    }
+                    const newBannerImage = fileMap[`card-bannerImage-${sectionKey}-${cardIndex}`];
+                    if (newBannerImage) {
+                        card.bannerImage = newBannerImage;
+                    }
+                });
+            });
+        } else {
+            // Generic handler for other pages
+            const updateObject = (obj, data, parentKey = '') => {
+                for (const key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        const formKey = parentKey ? `${parentKey}[${key}]` : key;
+                        if (Array.isArray(obj[key])) {
+                            obj[key].forEach((item, index) => {
+                                updateObject(item, data, `${formKey}[${index}]`);
+                            });
+                        } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+                            updateObject(obj[key], data, formKey);
+                        } else {
+                            if (data[formKey] !== undefined) {
+                                obj[key] = data[formKey];
+                            }
+                            const fileKey = `${formKey}_file`;
+                            if (fileMap[fileKey]) {
+                                obj[key] = fileMap[fileKey];
+                            }
+                        }
                     }
                 }
-            }
-        };
-        updateData(pageData, req.body);
+            };
+            updateObject(pageData, body);
+        }
 
-        fs.writeFile(path.join(__dirname, `data/pages/${pageName}.json`), JSON.stringify(pageData, null, 2), (err) => {
+        fs.writeFile(filePath, JSON.stringify(pageData, null, 2), (err) => {
             if (err) {
                 console.error(err);
                 return res.status(500).send('Error writing page data');
@@ -611,37 +743,49 @@ adminRouter.post('/services/forms/delete', (req, res) => {
 });
 
 // Front-end routes
-const renderPage = (res, viewName, pageName) => {
-    const data = {};
-    const filesToRead = {
-        header: 'header.json',
-        menu: 'menu.json',
-        footer: 'footer.json',
-        page: `pages/${pageName}.json`
-    };
+const renderPage = async (res, viewName, pageName) => {
+    try {
+        const data = {};
 
-    // For the homepage, we also need slider and cards data
-    if (pageName === 'index') {
-        filesToRead.slider = 'slider.json';
-        filesToRead.cards = 'cards.json';
-        delete filesToRead.page; // No specific page.json for index
-    }
+        // Base files for every page
+        const filesToRead = {
+            header: 'header.json',
+            menu: 'menu.json',
+            footer: 'footer.json',
+            page: `pages/${pageName}.json`
+        };
 
-    const filePromises = Object.entries(filesToRead).map(([key, file]) => {
-        return fs.promises.readFile(path.join(__dirname, 'data', file), 'utf8')
-            .then(content => {
+        // Read all base files
+        const promises = Object.entries(filesToRead).map(async ([key, file]) => {
+            const content = await fs.promises.readFile(path.join(__dirname, 'data', file), 'utf8');
+            data[key] = JSON.parse(content);
+        });
+        await Promise.all(promises);
+
+        // Check for and read data dependencies from the loaded page data
+        if (data.page && data.page.dataDependencies) {
+            const dependencyPromises = Object.entries(data.page.dataDependencies).map(async ([key, file]) => {
+                const content = await fs.promises.readFile(path.join(__dirname, 'data', file), 'utf8');
                 data[key] = JSON.parse(content);
             });
-    });
+            await Promise.all(dependencyPromises);
+        }
 
-    Promise.all(filePromises)
-        .then(() => {
-            res.render(`site/${viewName}`, data);
-        })
-        .catch(err => {
-            console.error(err);
-            res.status(500).send('Error loading page data');
-        });
+        // Pass slider and cards data from the page object to the root for index page
+        if (viewName === 'index') {
+            if (data.page.slider) data.slider = data.page.slider;
+            if (data.page.cards) data.cards = data.page.cards;
+        }
+
+        res.render(`site/${viewName}`, data);
+    } catch (err) {
+        console.error(`Error rendering page ${pageName}:`, err);
+        // Redirect to homepage if a page's json file doesn't exist
+        if (err.path && err.path.includes(`pages/${pageName}.json`)) {
+            return res.redirect('/');
+        }
+        res.status(500).send('Error loading page data');
+    }
 };
 
 app.get('/', (req, res) => {

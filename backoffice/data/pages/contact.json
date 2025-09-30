@@ -1,0 +1,17 @@
+{
+  "title": "اتصل بنا",
+  "header": "اتصل بنا",
+  "form": {
+    "title": "أرسل لنا رسالة",
+    "nameLabel": "الاسم",
+    "emailLabel": "البريد الإلكتروني",
+    "messageLabel": "الرسالة",
+    "submitButton": "إرسال"
+  },
+  "info": {
+    "title": "معلومات الاتصال",
+    "address": "بلدية زان، الشارع الرئيسي، زان",
+    "phone": "الهاتف: 123-456-7890",
+    "email": "البريد الإلكتروني: contact@zan-municipality.gov"
+  }
+}

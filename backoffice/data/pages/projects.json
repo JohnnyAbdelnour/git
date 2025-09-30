@@ -1,0 +1,30 @@
+{
+  "title": "المشاريع",
+  "header": "المشاريع",
+  "projects": {
+    "title": "المشاريع",
+    "items": [
+      {
+        "image": "https://picsum.photos/400/250?random=12",
+        "title": "توسعة شبكة الصرف الصحي",
+        "description": "مشروع يهدف إلى توسعة شبكة الصرف الصحي لتشمل الأحياء الجديدة في المدينة.",
+        "buttonText": "التفاصيل",
+        "buttonLink": "#"
+      },
+      {
+        "image": "https://picsum.photos/400/250?random=13",
+        "title": "بناء مركز ثقافي جديد",
+        "description": "وضع حجر الأساس لبناء مركز ثقافي متكامل يضم مكتبة عامة ومسرحًا وقاعات للأنشطة.",
+        "buttonText": "التفاصيل",
+        "buttonLink": "#"
+      },
+      {
+        "image": "https://picsum.photos/400/250?random=8",
+        "title": "مشروع تطوير الطرقات",
+        "description": "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
+        "buttonText": "التفاصيل",
+        "buttonLink": "#"
+      }
+    ]
+  }
+}

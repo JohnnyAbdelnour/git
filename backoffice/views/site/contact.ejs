@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بلدية زان</title>
+    <title><%= page.title %></title>
     <link rel="icon" href="/public/images/LogoZan.png" type="image/png">
     <link rel="stylesheet" href="/public/css/site.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,60 +35,31 @@
             </nav>
         </div>
     </header>
-
-    <section class="slider-container">
-        <div class="slides">
-            <% slider.forEach((slide, index) => { %>
-                <div class="slide <%= index === 0 ? 'active' : '' %>">
-                    <img src="<%= slide.image.startsWith('http') ? slide.image : '/public/' + slide.image %>" alt="Slider Image">
-                    <div class="slide-caption">
-                        <h2><%= slide.caption.title %></h2>
-                        <p><%= slide.caption.text %></p>
-                    </div>
-                </div>
-            <% }); %>
-        </div>
-        <button class="prev-slide">&#10094;</button>
-        <button class="next-slide">&#10095;</button>
-        <div class="slider-dots">
-            <% slider.forEach((slide, index) => { %>
-                <span class="dot <%= index === 0 ? 'active' : '' %>" data-slide="<%= index %>"></span>
-            <% }); %>
-        </div>
-    </section>
-
     <main>
         <div class="container">
-            <section class="welcome-section">
-                <h2>أهلاً بكم في الموقع الرسمي لبلدية زان</h2>
-                <p>نعمل لخدمتكم وتطوير مدينتنا. هنا يمكنكم العثور على معلومات حول خدماتنا ومشاريعنا وأخبارنا.</p>
+            <section class="page-header">
+                <h1><%= page.header %></h1>
             </section>
-
-            <section class="quick-links">
-                 <h3>روابط سريعة</h3>
-                 <div class="links-container">
-                    <a href="/services" class="link-box">الخدمات الإدارية</a>
-                    <a href="/projects" class="link-box">المشاريع</a>
-                    <a href="/contact" class="link-box">الشكاوى والاقتراحات</a>
-                 </div>
+            <section class="contact-content">
+                <div class="contact-form">
+                    <h2><%= page.form.title %></h2>
+                    <form action="/contact" method="POST">
+                        <label for="name"><%= page.form.nameLabel %></label>
+                        <input type="text" id="name" name="name" required>
+                        <label for="email"><%= page.form.emailLabel %></label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="message"><%= page.form.messageLabel %></label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <button type="submit"><%= page.form.submitButton %></button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h2><%= page.info.title %></h2>
+                    <p><%= page.info.address %></p>
+                    <p><%= page.info.phone %></p>
+                    <p><%= page.info.email %></p>
+                </div>
             </section>
-
-            <% Object.keys(cards).forEach(sectionKey => { %>
-                <section class="card-section">
-                    <a href="/<%= cards[sectionKey].link.replace('.html', '') %>" class="section-title-link"><h2 class="section-title"><%= cards[sectionKey].title %></h2></a>
-                    <div class="cards-container">
-                        <% cards[sectionKey].items.forEach(card => { %>
-                            <div class="card" data-description="<%= card.description %>">
-                                <img src="<%= card.image.startsWith('http') ? card.image : '/public/' + card.image %>" alt="صورة">
-                                <div class="card-content">
-                                    <h3><%= card.title %></h3>
-                                    <a href="<%= card.buttonLink %>" class="card-button"><%= card.buttonText %></a>
-                                </div>
-                            </div>
-                        <% }); %>
-                    </div>
-                </section>
-            <% }); %>
         </div>
     </main>
     <footer>
