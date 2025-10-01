@@ -570,7 +570,8 @@ footer {
     gap: 10px;
 }
 
-#news-search-input, #news-category-select {
+.search-bar-container input[type="text"],
+.search-bar-container select {
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
@@ -578,7 +579,7 @@ footer {
     font-family: 'Cairo', sans-serif;
 }
 
-#news-search-button {
+.search-bar-container button {
     padding: 10px 20px;
     background: #009688; /* Lighter Green */
     color: #fff;
@@ -589,7 +590,7 @@ footer {
     transition: background 0.3s;
 }
 
-#news-search-button:hover {
+.search-bar-container button:hover {
     background: #00796B; /* Dark Green */
 }
 
