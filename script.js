@@ -18,6 +18,25 @@ document.addEventListener('DOMContentLoaded', function () {
         },
     ];
 
+    const announcementsData = [
+        {
+            id: 1,
+            title: "إعلان هام: انقطاع المياه",
+            date: "26 سبتمبر 2025",
+            description: "سيتم قطع المياه عن المنطقة الشمالية يوم غد من الساعة 8 صباحًا حتى 4 عصرًا لأعمال الصيانة.",
+            image: "https://picsum.photos/400/250?random=1",
+            category: "announcements"
+        },
+        {
+            id: 2,
+            title: "دعوة لحضور اجتماع عام",
+            date: "22 سبتمبر 2025",
+            description: "تدعوكم البلدية لحضور اجتماع عام لمناقشة خطط التطوير يوم السبت القادم.",
+            image: "https://picsum.photos/400/250?random=2",
+            category: "announcements"
+        },
+    ];
+
     const galleryData = [
         {
             albumTitle: "افتتاح مطعم تراس العلا",
@@ -110,6 +129,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Handle homepage sections
+    const latestAnnouncementsContainer = document.getElementById('latest-announcements-container');
+    if (latestAnnouncementsContainer) {
+        const sortedAnnouncements = [...announcementsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderCards(latestAnnouncementsContainer, sortedAnnouncements.slice(0, 3));
+    }
+
     const latestNewsContainer = document.getElementById('latest-news-container');
     if (latestNewsContainer) {
         const sortedNews = [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -154,6 +179,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Initial render
         setupPagination(newsContainer, newsPagination, newsData);
+    }
+
+    const announcementsContainer = document.getElementById('announcements-container');
+    if (announcementsContainer) {
+        const announcementsPagination = document.getElementById('announcements-pagination');
+        const searchInput = document.getElementById('announcements-search-input');
+        const searchButton = document.getElementById('announcements-search-button');
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            if (searchTerm) {
+                const filteredData = announcementsData.filter(item =>
+                    item.title.toLowerCase().includes(searchTerm) ||
+                    item.description.toLowerCase().includes(searchTerm)
+                );
+                setupPagination(announcementsContainer, announcementsPagination, filteredData);
+            } else {
+                setupPagination(announcementsContainer, announcementsPagination, announcementsData);
+            }
+        }
+
+        searchButton.addEventListener('click', performSearch);
+
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Initial render
+        setupPagination(announcementsContainer, announcementsPagination, announcementsData);
     }
 
     // Handle projects page
@@ -227,7 +283,10 @@ document.addEventListener('DOMContentLoaded', function () {
                      if(!data) data = projectsData.find(item => item.id === itemId);
                 } else if (itemType === 'projects') {
                     data = projectsData.find(item => item.id === itemId);
+                } else if (itemType === 'announcements') {
+                    data = announcementsData.find(item => item.id === itemId);
                 }
+
 
                 if (data) {
                     modalTitle.textContent = data.title;
