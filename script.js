@@ -18,17 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
     ];
 
-    const announcementsData = [
-        {
-            id: 1,
-            title: "إعلان عن مناقصة عامة",
-            date: "20 سبتمبر 2025",
-            description: "تعلن بلدية زان عن مناقصة عامة لتوريد وتركيب أعمدة إنارة للشوارع الرئيسية.",
-            image: "https://picsum.photos/400/250?random=11",
-            category: "announcements"
-        },
-    ];
-
     const galleryData = [
         {
             albumTitle: "افتتاح مطعم تراس العلا",
@@ -137,11 +126,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const newsContainer = document.getElementById('news-container');
     if (newsContainer) {
         const newsPagination = document.getElementById('news-pagination');
-        setupPagination(newsContainer, newsPagination, newsData);
+        const searchInput = document.getElementById('news-search-input');
+        const searchButton = document.getElementById('news-search-button');
 
-        const announcementsContainer = document.getElementById('announcements-container');
-        const announcementsPagination = document.getElementById('announcements-pagination');
-        setupPagination(announcementsContainer, announcementsPagination, announcementsData);
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            if (searchTerm) {
+                const filteredData = newsData.filter(item =>
+                    item.title.toLowerCase().includes(searchTerm) ||
+                    item.description.toLowerCase().includes(searchTerm)
+                );
+                setupPagination(newsContainer, newsPagination, filteredData);
+            } else {
+                // If search term is empty, show all news
+                setupPagination(newsContainer, newsPagination, newsData);
+            }
+        }
+
+        searchButton.addEventListener('click', performSearch);
+
+        // Optional: Also search on pressing Enter key
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Initial render
+        setupPagination(newsContainer, newsPagination, newsData);
     }
 
     // Handle projects page
@@ -213,8 +225,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (itemType === 'events' || itemType === 'projects' && (window.location.pathname.includes('index') || window.location.pathname.includes('news'))) {
                     data = newsData.find(item => item.id === itemId);
                      if(!data) data = projectsData.find(item => item.id === itemId);
-                } else if (itemType === 'announcements') {
-                    data = announcementsData.find(item => item.id === itemId);
                 } else if (itemType === 'projects') {
                     data = projectsData.find(item => item.id === itemId);
                 }
