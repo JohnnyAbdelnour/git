@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - بلدية زان</title>
+    <link rel="icon" href="Logo Zan.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <span>اتصل بنا: 123-456-7890</span>
+            <span>|</span>
+            <span>البريد الإلكتروني: info@zan-municipality.gov</span>
+        </div>
+    </div>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="Logo Zan.png" alt="شعار بلدية زان" id="logo">
+                <h1>بلدية زان</h1>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">عن البلدية</a></li>
+                    <li><a href="services.html">الخدمات الإدارية</a></li>
+                    <li><a href="news.html">الأخبار والنشاطات</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.232323232323!2d35.500000!3d33.888630!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzE5LjEiTiAzNcKwMzAnMDAuMCJF!5e0!3m2!1sen!2slb!4v1620000000000!5m2!1sen!2slb" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <section class="contact-info-section">
+                <h2>معلومات الاتصال</h2>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p><strong>الهاتف:</strong> 123-456-7890</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p><strong>البريد الإلكتروني:</strong> info@zan-municipality.gov</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p><strong>العنوان:</strong> شارع البلدية، زان، لبنان</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-form-section">
+                <h2>أرسل لنا رسالة</h2>
+                <form action="mailto:zenmuniciplaty@gmail.com" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">الموضوع</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">الرسالة</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">إرسال الرسالة</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>عن بلدية زان</h4>
+                    <p>نسعى لتكون بلدية زان نموذجًا في التطور والخدمة المجتمعية.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط مهمة</h4>
+                    <ul>
+                        <li><a href="#">فرص العمل</a></li>
+                        <li><a href="#">المناقصات</a></li>
+                        <li><a href="#">البيئة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعونا</h4>
+                    <div class="social-media">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2023 بلدية زان. تصميم وتطوير بواسطة [اسم المطور/الشركة]</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
