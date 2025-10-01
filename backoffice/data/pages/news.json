@@ -1,7 +1,0 @@
-{
-  "title": "الأخبار والنشاطات",
-  "header": "الأخبار والنشاطات",
-  "dataDependencies": {
-    "events": "events.json"
-  }
-}
