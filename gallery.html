@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المشاريع - بلدية زان</title>
+    <title>فيديوهات وصور - بلدية زان</title>
     <link rel="icon" href="Logo Zan.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
 </head>
 <body>
     <div class="top-bar">
@@ -41,16 +42,10 @@
     <main>
         <div class="container">
             <section class="page-header">
-                <h1>المشاريع</h1>
+                <h1>فيديوهات وصور</h1>
             </section>
-
-            <section class="news-grid-section">
-                <div class="news-grid-container" id="projects-container">
-                    <!-- Project items will be dynamically inserted here -->
-                </div>
-                <div class="pagination" id="projects-pagination">
-                    <!-- Pagination controls will be dynamically inserted here -->
-                </div>
+            <section id="gallery-section">
+                <!-- Gallery content will be dynamically inserted here -->
             </section>
         </div>
     </main>
@@ -83,18 +78,8 @@
             </div>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="script.js"></script>
-
-    <!-- Modal Popup -->
-    <div id="details-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <img src="https://picsum.photos/800/300?random=1" alt="Modal Header Image" class="modal-header-image">
-            <div class="modal-body">
-                <h2 id="modal-title"></h2>
-                <p id="modal-text"></p>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

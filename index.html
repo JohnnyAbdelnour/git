@@ -21,10 +21,10 @@
     </div>
     <header>
         <div class="container">
-            <div class="logo-container">
+            <a href="index.html" class="logo-container">
                 <img src="Logo Zan.png" alt="شعار بلدية زان" id="logo">
                 <h1>بلدية زان</h1>
-            </div>
+            </a>
             <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
             <nav>
                 <ul>
@@ -32,6 +32,7 @@
                     <li><a href="about.html">عن البلدية</a></li>
                     <li><a href="services.html">الخدمات الإدارية</a></li>
                     <li><a href="news.html">الأخبار والنشاطات</a></li>
+                    <li><a href="gallery.html">فيديوهات وصور</a></li>
                     <li><a href="contact.html">اتصل بنا</a></li>
                 </ul>
             </nav>
@@ -81,61 +82,15 @@
 
             <section class="card-section">
                 <a href="news.html" class="section-title-link"><h2 class="section-title">أبرز الأخبار</h2></a>
-                <div class="cards-container">
-                    <div class="card">
-                        <img src="https://picsum.photos/400/250?random=4" alt="صورة خبر">
-                        <div class="card-content">
-                            <h3>افتتاح حديقة عامة جديدة</h3>
-                            <p>تم افتتاح حديقة "الأمل" الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://picsum.photos/400/250?random=5" alt="صورة مشروع">
-                        <div class="card-content">
-                            <h3>مشروع تطوير الطرقات</h3>
-                            <p>بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://picsum.photos/400/250?random=6" alt="صورة نشاط">
-                        <div class="card-content">
-                            <h3>حملة تشجير واسعة</h3>
-                            <p>شارك العشرات من المتطوعين في حملة التشجير التي نظمتها البلدية على أطراف المدينة.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
+                <div class="cards-container" id="latest-news-container">
+                    <!-- News items will be dynamically inserted here -->
                 </div>
             </section>
 
             <section class="card-section">
                 <a href="projects.html" class="section-title-link"><h2 class="section-title">المشاريع</h2></a>
-                <div class="cards-container">
-                    <div class="card">
-                        <img src="https://picsum.photos/400/250?random=12" alt="صورة مشروع">
-                        <div class="card-content">
-                            <h3>توسعة شبكة الصرف الصحي</h3>
-                            <p>مشروع يهدف إلى توسعة شبكة الصرف الصحي لتشمل الأحياء الجديدة في المدينة.</p>
-                            <a href="projects.html" class="card-button">التفاصيل</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://picsum.photos/400/250?random=13" alt="صورة مشروع">
-                        <div class="card-content">
-                            <h3>بناء مركز ثقافي جديد</h3>
-                            <p>وضع حجر الأساس لبناء مركز ثقافي متكامل يضم مكتبة عامة ومسرحًا وقاعات للأنشطة.</p>
-                            <a href="projects.html" class="card-button">التفاصيل</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://picsum.photos/400/250?random=8" alt="صورة مشروع">
-                        <div class="card-content">
-                            <h3>مشروع تطوير الطرقات</h3>
-                            <p>بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.</p>
-                            <a href="projects.html" class="card-button">التفاصيل</a>
-                        </div>
-                    </div>
+                <div class="cards-container" id="latest-projects-container">
+                    <!-- Project items will be dynamically inserted here -->
                 </div>
             </section>
         </div>
