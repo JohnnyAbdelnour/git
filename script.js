@@ -1,128 +1,198 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const newsData = [
+        {
+            id: 1,
+            title: "افتتاح حديقة عامة جديدة",
+            date: "25 سبتمبر 2025",
+            description: "تم افتتاح حديقة \"الأمل\" الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.",
+            image: "https://picsum.photos/400/250?random=7",
+            category: "events"
+        },
+        {
+            id: 2,
+            title: "مشروع تطوير الطرقات",
+            date: "24 سبتمبر 2025",
+            description: "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
+            image: "https://picsum.photos/400/250?random=8",
+            category: "projects"
+        },
+    ];
 
-    // Slider functionality (only on homepage)
-    if (document.querySelector('.slider-container')) {
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const prevBtn = document.querySelector('.prev-slide');
-        const nextBtn = document.querySelector('.next-slide');
+    const announcementsData = [
+        {
+            id: 1,
+            title: "إعلان عن مناقصة عامة",
+            date: "20 سبتمبر 2025",
+            description: "تعلن بلدية زان عن مناقصة عامة لتوريد وتركيب أعمدة إنارة للشوارع الرئيسية.",
+            image: "https://picsum.photos/400/250?random=11",
+            category: "announcements"
+        },
+    ];
 
-        let currentSlide = 0;
+    const galleryData = [
+        {
+            albumTitle: "افتتاح مطعم تراس العلا",
+            items: [
+                { type: 'photo', src: 'https://picsum.photos/400/250?random=15', description: 'صورة من الافتتاح' },
+                { type: 'photo', src: 'https://picsum.photos/400/250?random=16', description: 'الحضور في الافتتاح' },
+                { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4', description: 'فيديو قصير من الحدث' }
+            ]
+        },
+        {
+            albumTitle: "حملة تشجير",
+            items: [
+                { type: 'photo', src: 'https://picsum.photos/400/250?random=17', description: 'متطوعون يزرعون الأشجار' },
+                { type: 'photo', src: 'https://picsum.photos/400/250?random=18', description: 'الأشجار الجديدة' },
+            ]
+        }
+    ];
 
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+    const projectsData = [
+        {
+            id: 1,
+            title: "توسعة شبكة الصرف الصحي",
+            date: "28 سبتمبر 2025",
+            description: "مشروع يهدف إلى توسعة شبكة الصرف الصحي لتشمل الأحياء الجديدة في المدينة.",
+            image: "https://picsum.photos/400/250?random=12",
+            category: "projects"
+        },
+        {
+            id: 2,
+            title: "بناء مركز ثقافي جديد",
+            date: "15 سبتمبر 2025",
+            description: "وضع حجر الأساس لبناء مركز ثقافي متكامل يضم مكتبة عامة ومسرحًا وقاعات للأنشطة.",
+            image: "https://picsum.photos/400/250?random=13",
+            category: "projects"
+        },
+        {
+            id: 3,
+            title: "مشروع تطوير الطرقات",
+            date: "24 سبتمبر 2025",
+            description: "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
+            image: "https://picsum.photos/400/250?random=8",
+            category: "projects"
+        },
+    ];
 
-            if (n >= slides.length) {
-                currentSlide = 0;
-            } else if (n < 0) {
-                currentSlide = slides.length - 1;
-            } else {
-                currentSlide = n;
+    const ITEMS_PER_PAGE = 20;
+
+    // Function to render cards
+    function renderCards(container, data) {
+        container.innerHTML = '';
+        data.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${item.image}" alt="صورة">
+                <div class="card-content">
+                    <h3>${item.title}</h3>
+                    <a href="#" class="card-button" data-id="${item.id}" data-type="${item.category}">إقرأ المزيد</a>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Function to setup pagination
+    function setupPagination(container, paginationControls, data) {
+        let currentPage = 1;
+        const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
+
+        function displayPage(page) {
+            currentPage = page;
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const end = start + ITEMS_PER_PAGE;
+            renderCards(container, data.slice(start, end));
+            renderPaginationControls();
+        }
+
+        function renderPaginationControls() {
+            paginationControls.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.innerText = i;
+                button.className = (i === currentPage) ? 'active' : '';
+                button.addEventListener('click', () => displayPage(i));
+                paginationControls.appendChild(button);
             }
-
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
         }
 
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-
-        dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                const slideIndex = parseInt(e.target.getAttribute('data-slide'));
-                showSlide(slideIndex);
-            });
-        });
-
-        setInterval(nextSlide, 7000);
-        showSlide(currentSlide);
+        displayPage(1);
     }
 
-    // Mobile menu functionality
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
-
-    if (menuToggle && nav) {
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
+    // Handle homepage sections
+    const latestNewsContainer = document.getElementById('latest-news-container');
+    if (latestNewsContainer) {
+        const sortedNews = [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderCards(latestNewsContainer, sortedNews.slice(0, 3));
     }
 
-    // Form search functionality (only on services page)
-    if (document.getElementById('form-search')) {
-        const searchInput = document.getElementById('form-search');
-        const formsList = document.getElementById('forms-list');
-        const formItems = formsList.querySelectorAll('.form-item');
+    const latestProjectsContainer = document.getElementById('latest-projects-container');
+    if (latestProjectsContainer) {
+        const sortedProjects = [...projectsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderCards(latestProjectsContainer, sortedProjects.slice(0, 3));
+    }
 
-        searchInput.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
+    // Handle news and announcements page
+    const newsContainer = document.getElementById('news-container');
+    if (newsContainer) {
+        const newsPagination = document.getElementById('news-pagination');
+        setupPagination(newsContainer, newsPagination, newsData);
 
-            formItems.forEach(item => {
-                const formName = item.querySelector('.form-name').textContent.toLowerCase();
-                if (formName.includes(searchTerm)) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
+        const announcementsContainer = document.getElementById('announcements-container');
+        const announcementsPagination = document.getElementById('announcements-pagination');
+        setupPagination(announcementsContainer, announcementsPagination, announcementsData);
+    }
+
+    // Handle projects page
+    const projectsContainer = document.getElementById('projects-container');
+    if (projectsContainer) {
+        const projectsPagination = document.getElementById('projects-pagination');
+        setupPagination(projectsContainer, projectsPagination, projectsData);
+    }
+
+    // Handle gallery page
+    const gallerySection = document.getElementById('gallery-section');
+    if (gallerySection) {
+        galleryData.forEach((album, index) => {
+            const albumContainer = document.createElement('div');
+            albumContainer.className = 'album-container';
+
+            const albumTitle = document.createElement('h2');
+            albumTitle.className = 'album-title';
+            albumTitle.textContent = album.albumTitle;
+            albumContainer.appendChild(albumTitle);
+
+            const itemsContainer = document.createElement('div');
+            itemsContainer.className = 'gallery-items-container';
+
+            album.items.forEach(item => {
+                const galleryItem = document.createElement('a');
+                galleryItem.href = item.src;
+                galleryItem.className = 'gallery-item';
+                galleryItem.setAttribute('data-lightbox', `album-${index}`);
+                galleryItem.setAttribute('data-title', item.description);
+
+                if (item.type === 'photo') {
+                    galleryItem.innerHTML = `
+                        <img src="${item.src}" alt="${item.description}">
+                        <div class="item-description">${item.description}</div>
+                    `;
+                } else if (item.type === 'video') {
+                    galleryItem.innerHTML = `
+                        <video>
+                            <source src="${item.src}" type="video/mp4">
+                        </video>
+                        <div class="item-description">${item.description}</div>
+                        <div class="video-play-icon"><i class="fas fa-play"></i></div>
+                    `;
                 }
+                itemsContainer.appendChild(galleryItem);
             });
+
+            albumContainer.appendChild(itemsContainer);
+            gallerySection.appendChild(albumContainer);
         });
-    }
-
-    // News page tab and search functionality
-    if (document.querySelector('.content-filter-container')) {
-        const tabs = document.querySelectorAll('.tab-link');
-        const contents = document.querySelectorAll('.tab-content');
-        const searchInput = document.getElementById('news-search-input');
-        const categorySelect = document.getElementById('news-category-select');
-        const searchButton = document.getElementById('news-search-button');
-
-        // Tab switching
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const target = document.getElementById(tab.dataset.tab);
-
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-
-                contents.forEach(c => c.classList.remove('active'));
-                target.classList.add('active');
-            });
-        });
-
-        // Search functionality
-        const filterContent = () => {
-            const searchText = searchInput.value.toLowerCase();
-            const category = categorySelect.value;
-
-            document.querySelectorAll('#news .news-card, #announcements .news-card').forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const cardCategory = card.dataset.category;
-
-                const textMatch = title.includes(searchText);
-                const categoryMatch = (category === 'all' || cardCategory === category);
-
-                if (textMatch && categoryMatch) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        };
-
-        searchButton.addEventListener('click', filterContent);
-        searchInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') filterContent();
-        });
-        categorySelect.addEventListener('change', filterContent);
     }
 
     // Modal Popup functionality
@@ -130,35 +200,39 @@ document.addEventListener('DOMContentLoaded', function () {
     if (modal) {
         const modalTitle = document.getElementById('modal-title');
         const modalText = document.getElementById('modal-text');
-        const closeButton = document.querySelector('.close-button');
-        const cardButtons = document.querySelectorAll('.card-button');
+        const closeButton = modal.querySelector('.close-button');
 
-        cardButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent default anchor behavior
+        document.body.addEventListener('click', function(e) {
+            if (e.target.classList.contains('card-button')) {
+                e.preventDefault();
+                const button = e.target;
+                const itemId = parseInt(button.dataset.id);
+                const itemType = button.dataset.type;
 
-                // Find the parent card element
-                const card = e.target.closest('.card, .news-card');
-                if (card) {
-                    const title = card.querySelector('h3').textContent;
-                    const text = card.querySelector('p').textContent;
+                let data;
+                if (itemType === 'events' || itemType === 'projects' && (window.location.pathname.includes('index') || window.location.pathname.includes('news'))) {
+                    data = newsData.find(item => item.id === itemId);
+                     if(!data) data = projectsData.find(item => item.id === itemId);
+                } else if (itemType === 'announcements') {
+                    data = announcementsData.find(item => item.id === itemId);
+                } else if (itemType === 'projects') {
+                    data = projectsData.find(item => item.id === itemId);
+                }
 
-                    // Populate and show the modal
-                    modalTitle.textContent = title;
-                    modalText.textContent = text;
+                if (data) {
+                    modalTitle.textContent = data.title;
+                    modalText.textContent = data.description;
                     modal.style.display = 'block';
                 }
-            });
+            }
         });
 
-        // Close the modal when the close button is clicked
-        closeButton.addEventListener('click', function() {
+        closeButton.addEventListener('click', () => {
             modal.style.display = 'none';
         });
 
-        // Close the modal when clicking outside of the modal content
-        window.addEventListener('click', function(e) {
-            if (e.target == modal) {
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
                 modal.style.display = 'none';
             }
         });
