@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             items: [
                 { type: 'photo', src: 'https://picsum.photos/400/250?random=15', description: 'صورة من الافتتاح' },
                 { type: 'photo', src: 'https://picsum.photos/400/250?random=16', description: 'الحضور في الافتتاح' },
-                { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4', description: 'فيديو قصير من الحدث' }
+                { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4', thumbnail: 'https://picsum.photos/400/250?random=19', description: 'فيديو قصير من الحدث' }
             ]
         },
         {
@@ -248,9 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     `;
                 } else if (item.type === 'video') {
                     galleryItem.innerHTML = `
-                        <video>
-                            <source src="${item.src}" type="video/mp4">
-                        </video>
+                        <img src="${item.thumbnail}" alt="${item.description}">
                         <div class="item-description">${item.description}</div>
                         <div class="video-play-icon"><i class="fas fa-play"></i></div>
                     `;
