@@ -110,10 +110,12 @@ nav a:hover {
     left: 0;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    pointer-events: none; /* Prevent clicks on inactive slides */
 }
 
 .slide.active {
     opacity: 1;
+    pointer-events: auto; /* Allow clicks on the active slide */
 }
 
 .slide img {
