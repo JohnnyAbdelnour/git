@@ -41,16 +41,16 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             albumTitle: "افتتاح مطعم تراس العلا",
             items: [
-                { type: 'photo', src: 'https://picsum.photos/400/250?random=15', description: 'صورة من الافتتاح' },
-                { type: 'photo', src: 'https://picsum.photos/400/250?random=16', description: 'الحضور في الافتتاح' },
-                { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4', thumbnail: 'https://picsum.photos/400/250?random=19', description: 'فيديو قصير من الحدث' }
+                { type: 'photo', src: 'https://via.placeholder.com/800x600.png/FF0000/FFFFFF?text=Large+Image+1', thumbnail: 'https://via.placeholder.com/400x250.png/FF0000/FFFFFF?text=Thumb+1', description: 'صورة من الافتتاح' },
+                { type: 'photo', src: 'https://via.placeholder.com/800x600.png/00FF00/FFFFFF?text=Large+Image+2', thumbnail: 'https://via.placeholder.com/400x250.png/00FF00/FFFFFF?text=Thumb+2', description: 'الحضور في الافتتاح' },
+                { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4', thumbnail: 'https://via.placeholder.com/400x250.png/0000FF/FFFFFF?text=Video+Thumb', description: 'فيديو قصير من الحدث' }
             ]
         },
         {
             albumTitle: "حملة تشجير",
             items: [
-                { type: 'photo', src: 'https://picsum.photos/400/250?random=17', description: 'متطوعون يزرعون الأشجار' },
-                { type: 'photo', src: 'https://picsum.photos/400/250?random=18', description: 'الأشجار الجديدة' },
+                { type: 'photo', src: 'https://via.placeholder.com/800x600.png/FFFF00/000000?text=Large+Image+3', thumbnail: 'https://via.placeholder.com/400x250.png/FFFF00/000000?text=Thumb+3', description: 'متطوعون يزرعون الأشجار' },
+                { type: 'photo', src: 'https://via.placeholder.com/800x600.png/00FFFF/000000?text=Large+Image+4', thumbnail: 'https://via.placeholder.com/400x250.png/00FFFF/000000?text=Thumb+4', description: 'الأشجار الجديدة' },
             ]
         }
     ];
@@ -242,8 +242,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 galleryItem.setAttribute('data-title', item.description);
 
                 if (item.type === 'photo') {
+                    const thumbnailUrl = item.thumbnail || item.src;
                     galleryItem.innerHTML = `
-                        <img src="${item.src}" alt="${item.description}">
+                        <img src="${thumbnailUrl}" alt="${item.description}">
                         <div class="item-description">${item.description}</div>
                     `;
                 } else if (item.type === 'video') {
@@ -259,6 +260,10 @@ document.addEventListener('DOMContentLoaded', function () {
             albumContainer.appendChild(itemsContainer);
             gallerySection.appendChild(albumContainer);
         });
+
+        if (window.lightbox && typeof lightbox.init === 'function') {
+            lightbox.init();
+        }
     }
 
     // Modal Popup functionality
