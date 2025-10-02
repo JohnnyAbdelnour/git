@@ -268,6 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (modal) {
         const modalTitle = document.getElementById('modal-title');
         const modalText = document.getElementById('modal-text');
+        const modalImage = modal.querySelector('.modal-header-image');
         const closeButton = modal.querySelector('.close-button');
 
         document.body.addEventListener('click', function(e) {
@@ -291,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (data) {
                     modalTitle.textContent = data.title;
                     modalText.textContent = data.description;
+                    modalImage.src = data.image;
                     modal.style.display = 'block';
                 }
             }
