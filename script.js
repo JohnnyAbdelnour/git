@@ -378,4 +378,24 @@ document.addEventListener('DOMContentLoaded', function () {
             nav.classList.toggle('active');
         });
     }
+
+    // Handle form search on services page
+    const formSearchInput = document.getElementById('form-search');
+    const formsList = document.getElementById('forms-list');
+
+    if (formSearchInput && formsList) {
+        formSearchInput.addEventListener('input', function() {
+            const searchTerm = formSearchInput.value.toLowerCase();
+            const formItems = formsList.getElementsByClassName('form-item');
+
+            Array.from(formItems).forEach(function(item) {
+                const formName = item.querySelector('.form-name').textContent.toLowerCase();
+                if (formName.includes(searchTerm)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        });
+    }
 });
