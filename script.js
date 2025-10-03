@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "افتتاح حديقة عامة جديدة",
             date: "25 سبتمبر 2025",
             description: "تم افتتاح حديقة \"الأمل\" الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.",
-            image: "https://picsum.photos/400/250?random=7",
+            image: "https://i.imgur.com/ziuebjm.jpeg",
             category: "events"
         },
         {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "مشروع تطوير الطرقات",
             date: "24 سبتمبر 2025",
             description: "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
-            image: "https://picsum.photos/400/250?random=8",
+            image: "https://i.imgur.com/vtd46qe.jpeg",
             category: "projects"
         },
     ];
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "إعلان هام: انقطاع المياه",
             date: "26 سبتمبر 2025",
             description: "سيتم قطع المياه عن المنطقة الشمالية يوم غد من الساعة 8 صباحًا حتى 4 عصرًا لأعمال الصيانة.",
-            image: "https://picsum.photos/400/250?random=1",
+            image: "https://i.imgur.com/lMtMtXP.jpeg",
             category: "announcements"
         },
         {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "دعوة لحضور اجتماع عام",
             date: "22 سبتمبر 2025",
             description: "تدعوكم البلدية لحضور اجتماع عام لمناقشة خطط التطوير يوم السبت القادم.",
-            image: "https://picsum.photos/400/250?random=2",
+            image: "https://i.imgur.com/O3nhom6.jpeg",
             category: "announcements"
         },
     ];
@@ -41,16 +41,16 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             albumTitle: "افتتاح مطعم تراس العلا",
             items: [
-                { type: 'photo', src: 'https://via.placeholder.com/800x600.png/FF0000/FFFFFF?text=Large+Image+1', thumbnail: 'https://via.placeholder.com/400x250.png/FF0000/FFFFFF?text=Thumb+1', description: 'صورة من الافتتاح' },
-                { type: 'photo', src: 'https://via.placeholder.com/800x600.png/00FF00/FFFFFF?text=Large+Image+2', thumbnail: 'https://via.placeholder.com/400x250.png/00FF00/FFFFFF?text=Thumb+2', description: 'الحضور في الافتتاح' },
+                { type: 'photo', src: 'https://i.imgur.com/hYZfS7J.jpeg', thumbnail: 'https://i.imgur.com/hYZfS7J.jpeg', description: 'صورة من الافتتاح' },
+                { type: 'photo', src: 'https://i.imgur.com/3elzIk6.jpeg', thumbnail: 'https://i.imgur.com/3elzIk6.jpeg', description: 'الحضور في الافتتاح' },
                 { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4', thumbnail: 'https://via.placeholder.com/400x250.png/0000FF/FFFFFF?text=Video+Thumb', description: 'فيديو قصير من الحدث' }
             ]
         },
         {
             albumTitle: "حملة تشجير",
             items: [
-                { type: 'photo', src: 'https://via.placeholder.com/800x600.png/FFFF00/000000?text=Large+Image+3', thumbnail: 'https://via.placeholder.com/400x250.png/FFFF00/000000?text=Thumb+3', description: 'متطوعون يزرعون الأشجار' },
-                { type: 'photo', src: 'https://via.placeholder.com/800x600.png/00FFFF/000000?text=Large+Image+4', thumbnail: 'https://via.placeholder.com/400x250.png/00FFFF/000000?text=Thumb+4', description: 'الأشجار الجديدة' },
+                { type: 'photo', src: 'https://i.imgur.com/tWwATUa.jpeg', thumbnail: 'https://i.imgur.com/tWwATUa.jpeg', description: 'متطوعون يزرعون الأشجار' },
+                { type: 'photo', src: 'https://i.imgur.com/pPCiOgF.jpeg', thumbnail: 'https://i.imgur.com/pPCiOgF.jpeg', description: 'الأشجار الجديدة' },
             ]
         }
     ];
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "توسعة شبكة الصرف الصحي",
             date: "28 سبتمبر 2025",
             description: "مشروع يهدف إلى توسعة شبكة الصرف الصحي لتشمل الأحياء الجديدة في المدينة.",
-            image: "https://picsum.photos/400/250?random=12",
+            image: "https://i.imgur.com/xgfvlX0.jpeg",
             category: "projects"
         },
         {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "بناء مركز ثقافي جديد",
             date: "15 سبتمبر 2025",
             description: "وضع حجر الأساس لبناء مركز ثقافي متكامل يضم مكتبة عامة ومسرحًا وقاعات للأنشطة.",
-            image: "https://picsum.photos/400/250?random=13",
+            image: "https://i.imgur.com/sYJOsJW.jpeg",
             category: "projects"
         },
         {
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "مشروع تطوير الطرقات",
             date: "24 سبتمبر 2025",
             description: "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
-            image: "https://picsum.photos/400/250?random=8",
+            image: "https://i.imgur.com/vtd46qe.jpeg",
             category: "projects"
         },
     ];
