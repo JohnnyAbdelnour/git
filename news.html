@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عن بلدية زان</title>
+    <title>الأخبار والنشاطات - بلدية زان</title>
     <link rel="icon" href="Logo Zan.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,32 +42,34 @@
     <main>
         <div class="container">
             <section class="page-header">
-                <h1>عن بلدية زان</h1>
+                <h1>الأخبار والنشاطات</h1>
             </section>
-            <section class="about-content">
-                <div class="about-text">
-                    <h2>تاريخنا ورسالتنا</h2>
-                    <p>
-                        تأسست بلدية زان لخدمة أهالي المنطقة وتلبية احتياجاتهم. منذ تأسيسها، عملت البلدية على تحقيق التنمية المستدامة وتحسين جودة الحياة للسكان. نحن نؤمن بأهمية الشفافية والمشاركة المجتمعية في جميع أعمالنا.
-                    </p>
+
+            <div class="content-filter-container">
+                <!-- Search Bar -->
+                <div class="search-bar-container">
+                    <input type="text" id="news-search-input" placeholder="ابحث بالكلمة المفتاحية...">
+                    <button id="news-search-button">بحث</button>
                 </div>
-                <div class="about-vision-mission">
-                    <div class="vision">
-                        <h3>رؤيتنا</h3>
-                        <p>أن نكون بلدية رائدة ومبتكرة في تقديم الخدمات البلدية، وأن نجعل من زان مدينة نموذجية في التطور والازدهار.</p>
+            </div>
+
+            <!-- Content Panels -->
+            <div id="news" class="tab-content active">
+                <section class="news-grid-section">
+                    <div class="news-grid-container" id="news-container">
+                        <!-- News items will be dynamically inserted here -->
                     </div>
-                    <div class="mission">
-                        <h3>مهمتنا</h3>
-                        <p>العمل على تحسين جودة الحياة في مدينة زان من خلال تقديم خدمات بلدية متميزة، وتنفيذ مشاريع تنموية مستدامة، وتعزيز المشاركة المجتمعية.</p>
+                    <div class="pagination" id="news-pagination">
+                        <!-- Pagination controls will be dynamically inserted here -->
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </main>
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
+                 <div class="footer-section">
                     <h4>عن بلدية زان</h4>
                     <p>نسعى لتكون بلدية زان نموذجًا في التطور والخدمة المجتمعية.</p>
                 </div>
@@ -94,5 +96,17 @@
         </div>
     </footer>
     <script src="script.js"></script>
+
+    <!-- Modal Popup -->
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="https://picsum.photos/800/300?random=1" alt="Modal Header Image" class="modal-header-image">
+            <div class="modal-body">
+                <h2 id="modal-title"></h2>
+                <p id="modal-text"></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

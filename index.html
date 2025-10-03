@@ -9,28 +9,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <div class="top-bar">
         <div class="container">
-            <span>اتصل بنا: 123-456-7890</span>
+            <span>اتصل بنا: 96136710777+</span>
             <span>|</span>
-            <span>البريد الإلكتروني: info@zan-municipality.gov</span>
+            <span>البريد الإلكتروني: zenmunicipality@gmail.com</span>
         </div>
     </div>
     <header>
         <div class="container">
-            <div class="logo-container">
+            <a href="index.html" class="logo-container">
                 <img src="Logo Zan.png" alt="شعار بلدية زان" id="logo">
                 <h1>بلدية زان</h1>
-            </div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
             <nav>
                 <ul>
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="about.html">عن البلدية</a></li>
                     <li><a href="services.html">الخدمات الإدارية</a></li>
-                    <li><a href="#">الأخبار والنشاطات</a></li>
-                    <li><a href="#">اتصل بنا</a></li>
+                    <li><a href="announcements.html">الاعلانات</a></li>
+                    <li><a href="news.html">الأخبار والنشاطات</a></li>
+                    <li><a href="gallery.html">فيديوهات وصور</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
                 </ul>
             </nav>
         </div>
@@ -39,18 +43,22 @@
     <section class="slider-container">
         <div class="slides">
             <div class="slide active">
-                <img src="https://picsum.photos/1920/600?random=1" alt="Slider Image 1">
-                <div class="slide-caption">
-                    <h2>مرحباً بكم في بلدية زان</h2>
-                    <p>نعمل من أجل مستقبل أفضل لمدينتنا.</p>
-                </div>
+                <a href="about.html">
+                    <img src="https://i.imgur.com/endxhQd.png" alt="Slider Image 1">
+                    <div class="slide-caption">
+                        <h2>مرحباً بكم في بلدية زان</h2>
+                        <p>نعمل من أجل مستقبل أفضل لمدينتنا.</p>
+                    </div>
+                </a>
             </div>
             <div class="slide">
-                <img src="https://picsum.photos/1920/600?random=2" alt="Slider Image 2">
-                <div class="slide-caption">
-                    <h2>مشاريعنا الحالية</h2>
-                    <p>اكتشفوا أحدث المشاريع التي نعمل عليها.</p>
-                </div>
+                <a href="projects.html">
+                    <img src="https://i.imgur.com/FGl1fZu.jpeg" alt="Slider Image 2">
+                    <div class="slide-caption">
+                        <h2>مشاريعنا الحالية</h2>
+                        <p>اكتشفوا أحدث المشاريع التي نعمل عليها.</p>
+                    </div>
+                </a>
             </div>
         </div>
         <button class="prev-slide">&#10094;</button>
@@ -71,39 +79,31 @@
             <section class="quick-links">
                  <h3>روابط سريعة</h3>
                  <div class="links-container">
-                    <a href="#" class="link-box">المعاملات</a>
-                    <a href="#" class="link-box">المشاريع</a>
-                    <a href="#" class="link-box">الشكاوى والاقتراحات</a>
+                    <a href="services.html" class="link-box">الخدمات الإدارية</a>
+                    <a href="announcements.html" class="link-box">الاعلانات</a>
+                    <a href="projects.html" class="link-box">المشاريع</a>
+                    <a href="contact.html" class="link-box">الشكاوى والاقتراحات</a>
                  </div>
             </section>
 
             <section class="card-section">
-                <h2 class="section-title">أبرز الأخبار</h2>
-                <div class="cards-container">
-                    <div class="card">
-                        <img src="https://picsum.photos/400/250?random=4" alt="صورة خبر">
-                        <div class="card-content">
-                            <h3>افتتاح حديقة عامة جديدة</h3>
-                            <p>تم افتتاح حديقة "الأمل" الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://picsum.photos/400/250?random=5" alt="صورة مشروع">
-                        <div class="card-content">
-                            <h3>مشروع تطوير الطرقات</h3>
-                            <p>بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="https://picsum.photos/400/250?random=6" alt="صورة نشاط">
-                        <div class="card-content">
-                            <h3>حملة تشجير واسعة</h3>
-                            <p>شارك العشرات من المتطوعين في حملة التشجير التي نظمتها البلدية على أطراف المدينة.</p>
-                            <a href="#" class="card-button">إقرأ المزيد</a>
-                        </div>
-                    </div>
+                <a href="announcements.html" class="section-title-link"><h2 class="section-title">الاعلانات</h2></a>
+                <div class="cards-container" id="latest-announcements-container">
+                    <!-- Announcements will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <section class="card-section">
+                <a href="news.html" class="section-title-link"><h2 class="section-title">أبرز الأخبار</h2></a>
+                <div class="cards-container" id="latest-news-container">
+                    <!-- News items will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <section class="card-section">
+                <a href="projects.html" class="section-title-link"><h2 class="section-title">المشاريع</h2></a>
+                <div class="cards-container" id="latest-projects-container">
+                    <!-- Project items will be dynamically inserted here -->
                 </div>
             </section>
         </div>
@@ -126,17 +126,29 @@
                 <div class="footer-section">
                     <h4>تابعونا</h4>
                     <div class="social-media">
-                        <a href="#">فيسبوك</a>
-                        <a href="#">تويتر</a>
-                        <a href="#">انستغرام</a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>جميع الحقوق محفوظة &copy; 2023 بلدية زان. تصميم وتطوير بواسطة [اسم المطور/الشركة]</p>
+                <p>جميع الحقوق محفوظة &copy; 2023 بلدية زان. تصميم وتطوير Johnny Abdelnour</p>
             </div>
         </div>
     </footer>
     <script src="script.js"></script>
+
+    <!-- Modal Popup -->
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="https://picsum.photos/800/300?random=1" alt="Modal Header Image" class="modal-header-image">
+            <div class="modal-body">
+                <h2 id="modal-title"></h2>
+                <p id="modal-text"></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
