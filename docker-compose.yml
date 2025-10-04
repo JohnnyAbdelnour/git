@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+      - ./publish:/app/publish
+      # This volume is for the git deploy key
+      # - ~/.ssh/id_rsa_github:/root/.ssh/id_rsa:ro
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/data/cms.sqlite
+      - UPLOAD_DIR=/app/uploads
+      - PUBLIC_REPO_LOCAL=/app/publish
+      - PUBLISH_DATA_PATH=/app/publish/data
+networks:
+  default:
+    driver: bridge

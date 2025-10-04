@@ -1,0 +1,212 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(EDITOR)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum CallToActionType {
+  INTERNAL
+  EXTERNAL
+  NONE
+}
+
+model Slider {
+  id           String           @id @default(uuid())
+  slug         String           @unique
+  status       ContentStatus    @default(DRAFT)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  title        String
+  subtitle     String?
+  image_url    String
+  cta_label    String?
+  cta_type     CallToActionType @default(NONE)
+  cta_target   String?
+  order        Int              @default(0)
+  visible_from DateTime
+  visible_to   DateTime?
+}
+
+// --- Announcements ---
+model Announcement {
+  id           String        @id @default(uuid())
+  slug         String        @unique
+  status       ContentStatus @default(DRAFT)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  title        String
+  excerpt      String?
+  body         String
+  category     String
+  start_date   DateTime
+  end_date     DateTime?
+  pin_home     Boolean       @default(false)
+
+  attachments  AnnouncementAttachment[]
+}
+
+model AnnouncementAttachment {
+  id             String       @id @default(uuid())
+  title          String
+  url            String
+  announcement   Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
+  announcementId String
+}
+
+// --- News, Projects, Gallery ---
+model News {
+  id           String        @id @default(uuid())
+  slug         String        @unique
+  status       ContentStatus @default(DRAFT)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  title        String
+  cover_image  String
+  published_at DateTime
+  body         String
+  tags         String?       // Stored as a comma-separated string
+  pin_home     Boolean       @default(false)
+
+  gallery      Album[]
+  projects     Project[]
+}
+
+enum ProjectStatus {
+  PLANNING
+  ONGOING
+  COMPLETED
+}
+
+model Project {
+  id           String        @id @default(uuid())
+  slug         String        @unique
+  status       ProjectStatus @default(PLANNING)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  title        String
+  cover_image  String
+  body         String
+  start_date   DateTime
+  end_date     DateTime?
+  pin_home     Boolean       @default(false)
+
+  gallery      Album[]
+  related_news News[]
+}
+
+model Album {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  status      ContentStatus @default(DRAFT)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  title       String
+  description String?
+  cover_image String
+  images      Image[]
+
+  news        News[]
+  projects    Project[]
+}
+
+model Image {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  file_url  String
+  caption   String?
+  alt       String?
+  credit    String?
+
+  album     Album?   @relation(fields: [albumId], references: [id], onDelete: SetNull)
+  albumId   String?
+}
+
+// --- Services & Forms ---
+model Service {
+  id             String   @id @default(uuid())
+  slug           String   @unique
+  status         ContentStatus @default(DRAFT)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  title          String
+  icon           String?
+  description    String
+  requirements   String?       // Stored as a comma-separated string
+  documents      String?       // Stored as a comma-separated string
+  contact_person String?
+  contact_phone  String?
+}
+
+model Form {
+  id        String   @id @default(uuid())
+  slug      String   @unique
+  status    ContentStatus @default(DRAFT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title     String
+  file_url  String
+  category  String
+  version   String?
+}
+
+// --- Inbox ---
+model ContactMessage {
+  id          String   @id @default(uuid())
+  received_at DateTime @default(now())
+
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  processed Boolean  @default(false)
+  notes     String?
+}
+
+// --- Settings (Singleton) ---
+model SiteSettings {
+  id           Int      @id @default(1)
+  updatedAt    DateTime @updatedAt
+
+  site_name    String?
+  logo_url     String?
+  social       Json?
+  footer_links Json?
+  about        Json?
+  contact      Json?
+}

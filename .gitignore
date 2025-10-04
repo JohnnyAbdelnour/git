@@ -1,0 +1,39 @@
+# Dependencies
+/node_modules
+
+# Build output
+/dist
+
+# Local data, uploads, and session files
+/data/
+/uploads/
+
+# Published output and cloned repo
+/publish/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-error.log
+yarn-debug.log*
+
+# Prisma
+/prisma/data/
+/src/generated/
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Scratch directory
+/jules-scratch/
+/server.log
