@@ -293,6 +293,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
 
+                if (itemType === 'announcements') {
+                    modal.classList.add('announcement-modal');
+                } else {
+                    modal.classList.remove('announcement-modal');
+                }
+
                 if (data) {
                     modalTitle.textContent = data.title;
                     modalText.textContent = data.description;

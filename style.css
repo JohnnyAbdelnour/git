@@ -868,11 +868,9 @@ footer {
 
 .modal-header-image {
     width: 100%;
-    height: auto;
-    max-height: 70vh;
-    object-fit: contain;
+    height: 300px;
+    object-fit: cover;
     display: block;
-    background-color: #f0f0f0;
 }
 
 .modal-body {
@@ -1158,4 +1156,12 @@ footer {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
+}
+
+/* Scoped styles for announcement modal image */
+.modal.announcement-modal .modal-header-image {
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    background-color: #f0f0f0;
 }
