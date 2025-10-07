@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <img src="${item.image}" alt="صورة">
                 <div class="card-content">
                     <h3>${item.title}</h3>
+                    <p class="card-date">${item.date}</p>
                     <a href="#" class="card-button" data-id="${item.id}" data-type="${item.category}">إقرأ المزيد</a>
                 </div>
             `;
