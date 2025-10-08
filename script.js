@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "إعلان هام: انقطاع المياه",
             date: "26 سبتمبر 2025",
             description: "سيتم قطع المياه عن المنطقة الشمالية يوم غد من الساعة 8 صباحًا حتى 4 عصرًا لأعمال الصيانة.",
-            images: ["https://i.imgur.com/lMtMtXP.jpeg", "https://i.imgur.com/O3nhom6.jpeg"],
+            image: "https://i.imgur.com/lMtMtXP.jpeg",
             category: "announcements"
         },
         {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "دعوة لحضور اجتماع عام",
             date: "22 سبتمبر 2025",
             description: "تدعوكم البلدية لحضور اجتماع عام لمناقشة خطط التطوير يوم السبت القادم.",
-            images: ["https://i.imgur.com/O3nhom6.jpeg"],
+            image: "https://i.imgur.com/O3nhom6.jpeg",
             category: "announcements"
         },
     ];
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <img src="${item.images[0]}" alt="صورة">
+                <img src="${item.images ? item.images[0] : item.image}" alt="صورة">
                 <div class="card-content">
                     <h3>${item.title}</h3>
                     <p class="card-date">${item.date}</p>
@@ -273,13 +273,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const modalTitle = document.getElementById('modal-title');
         const modalText = document.getElementById('modal-text');
         const closeButton = modal.querySelector('.close-button');
+
+        // Get both the single image and slider elements
+        const modalImage = modal.querySelector('.modal-header-image');
+        const modalSlider = modal.querySelector('.modal-image-slider');
         const sliderWrapper = modal.querySelector('.slider-wrapper');
         const prevBtn = modal.querySelector('.prev-btn');
         const nextBtn = modal.querySelector('.next-btn');
         const dotsContainer = modal.querySelector('.slider-dots-container');
 
         let currentSlide = 0;
-        let slideInterval;
 
         function showSlide(index) {
             const slides = sliderWrapper.querySelectorAll('img');
@@ -321,47 +324,73 @@ document.addEventListener('DOMContentLoaded', function () {
                 const itemId = parseInt(button.dataset.id);
                 const itemType = button.dataset.type;
 
-                let data;
-                if (itemType === 'events' || itemType === 'projects' && (window.location.pathname.includes('index') || window.location.pathname.includes('news'))) {
-                    data = newsData.find(item => item.id === itemId);
-                     if(!data) data = projectsData.find(item => item.id === itemId);
-                } else if (itemType === 'projects') {
-                    data = projectsData.find(item => item.id === itemId);
-                } else if (itemType === 'announcements') {
-                    data = announcementsData.find(item => item.id === itemId);
+                const parentContainer = button.closest('.cards-container, .news-grid-container');
+                let dataSource;
+
+                if (parentContainer) {
+                    switch(parentContainer.id) {
+                        case 'latest-announcements-container':
+                        case 'announcements-container':
+                            dataSource = announcementsData;
+                            break;
+                        case 'latest-news-container':
+                        case 'news-container':
+                            dataSource = newsData;
+                            break;
+                        case 'latest-projects-container':
+                        case 'projects-container':
+                            dataSource = projectsData;
+                            break;
+                    }
                 }
 
-                if (itemType === 'announcements') {
-                    modal.classList.add('announcement-modal');
-                } else {
-                    modal.classList.remove('announcement-modal');
+                // Fallback for safety, though the above should be robust
+                if (!dataSource) {
+                    if (itemType === 'announcements') dataSource = announcementsData;
+                    else if (itemType === 'events') dataSource = newsData;
+                    else if (itemType === 'projects') dataSource = projectsData;
                 }
+
+                const data = dataSource ? dataSource.find(item => item.id === itemId) : null;
 
                 if (data) {
                     modalTitle.textContent = data.title;
                     modalText.textContent = data.description;
 
-                    sliderWrapper.innerHTML = '';
-                    if (data.images && data.images.length > 0) {
-                        data.images.forEach(imgSrc => {
-                            const img = document.createElement('img');
-                            img.src = imgSrc;
-                            img.alt = data.title;
-                            sliderWrapper.appendChild(img);
-                        });
+                    if (itemType === 'announcements') {
+                        // Handle announcements: show single image
+                        modal.classList.add('announcement-modal');
+                        modalImage.src = data.image;
+                        modalImage.style.display = 'block';
+                        modalSlider.style.display = 'none';
+                    } else {
+                        // Handle news/projects: show slider
+                        modal.classList.remove('announcement-modal');
+                        modalImage.style.display = 'none';
+                        modalSlider.style.display = 'block';
 
-                        if (data.images.length > 1) {
-                            createDots(data.images.length);
-                            prevBtn.style.display = 'block';
-                            nextBtn.style.display = 'block';
-                            dotsContainer.style.display = 'flex';
-                        } else {
-                            dotsContainer.innerHTML = '';
-                            prevBtn.style.display = 'none';
-                            nextBtn.style.display = 'none';
-                            dotsContainer.style.display = 'none';
+                        sliderWrapper.innerHTML = '';
+                        if (data.images && data.images.length > 0) {
+                            data.images.forEach(imgSrc => {
+                                const img = document.createElement('img');
+                                img.src = imgSrc;
+                                img.alt = data.title;
+                                sliderWrapper.appendChild(img);
+                            });
+
+                            if (data.images.length > 1) {
+                                createDots(data.images.length);
+                                prevBtn.style.display = 'block';
+                                nextBtn.style.display = 'block';
+                                dotsContainer.style.display = 'flex';
+                            } else {
+                                dotsContainer.innerHTML = '';
+                                prevBtn.style.display = 'none';
+                                nextBtn.style.display = 'none';
+                                dotsContainer.style.display = 'none';
+                            }
+                            showSlide(0);
                         }
-                        showSlide(0);
                     }
 
                     modal.style.display = 'block';
