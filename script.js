@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "افتتاح حديقة عامة جديدة",
             date: "25 سبتمبر 2025",
             description: "تم افتتاح حديقة \"الأمل\" الجديدة في وسط المدينة لتكون متنفساً طبيعياً للسكان.",
-            image: "https://i.imgur.com/ziuebjm.jpeg",
+            images: ["https://i.imgur.com/ziuebjm.jpeg", "https://i.imgur.com/vtd46qe.jpeg", "https://i.imgur.com/lMtMtXP.jpeg"],
             category: "events"
         },
         {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "مشروع تطوير الطرقات",
             date: "24 سبتمبر 2025",
             description: "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
-            image: "https://i.imgur.com/vtd46qe.jpeg",
+            images: ["https://i.imgur.com/vtd46qe.jpeg"],
             category: "projects"
         },
     ];
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "توسعة شبكة الصرف الصحي",
             date: "28 سبتمبر 2025",
             description: "مشروع يهدف إلى توسعة شبكة الصرف الصحي لتشمل الأحياء الجديدة في المدينة.",
-            image: "https://i.imgur.com/xgfvlX0.jpeg",
+            images: ["https://i.imgur.com/xgfvlX0.jpeg"],
             category: "projects"
         },
         {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "بناء مركز ثقافي جديد",
             date: "15 سبتمبر 2025",
             description: "وضع حجر الأساس لبناء مركز ثقافي متكامل يضم مكتبة عامة ومسرحًا وقاعات للأنشطة.",
-            image: "https://i.imgur.com/sYJOsJW.jpeg",
+            images: ["https://i.imgur.com/sYJOsJW.jpeg", "https://i.imgur.com/FGl1fZu.jpeg"],
             category: "projects"
         },
         {
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: "مشروع تطوير الطرقات",
             date: "24 سبتمبر 2025",
             description: "بدء المرحلة الثانية من مشروع تطوير وتعبيد الطرقات الرئيسية والفرعية في المدينة.",
-            image: "https://i.imgur.com/vtd46qe.jpeg",
+            images: ["https://i.imgur.com/vtd46qe.jpeg"],
             category: "projects"
         },
     ];
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <img src="${item.image}" alt="صورة">
+                <img src="${item.images ? item.images[0] : item.image}" alt="صورة">
                 <div class="card-content">
                     <h3>${item.title}</h3>
                     <p class="card-date">${item.date}</p>
@@ -272,8 +272,50 @@ document.addEventListener('DOMContentLoaded', function () {
     if (modal) {
         const modalTitle = document.getElementById('modal-title');
         const modalText = document.getElementById('modal-text');
-        const modalImage = modal.querySelector('.modal-header-image');
         const closeButton = modal.querySelector('.close-button');
+
+        // Get both the single image and slider elements
+        const modalImage = modal.querySelector('.modal-header-image');
+        const modalSlider = modal.querySelector('.modal-image-slider');
+        const sliderWrapper = modal.querySelector('.slider-wrapper');
+        const prevBtn = modal.querySelector('.prev-btn');
+        const nextBtn = modal.querySelector('.next-btn');
+        const dotsContainer = modal.querySelector('.slider-dots-container');
+
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            const slides = sliderWrapper.querySelectorAll('img');
+            const dots = dotsContainer.querySelectorAll('.dot');
+            if (slides.length === 0) return;
+
+            slides.forEach(slide => slide.classList.remove('slide-active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            currentSlide = (index + slides.length) % slides.length;
+
+            slides[currentSlide].classList.add('slide-active');
+            if (dots.length > 0) {
+                dots[currentSlide].classList.add('active');
+            }
+        }
+
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
+        }
+
+        function createDots(numDots) {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < numDots; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                dot.addEventListener('click', () => showSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        prevBtn.addEventListener('click', () => changeSlide(-1));
+        nextBtn.addEventListener('click', () => changeSlide(1));
 
         document.body.addEventListener('click', function(e) {
             if (e.target.classList.contains('card-button')) {
@@ -282,27 +324,75 @@ document.addEventListener('DOMContentLoaded', function () {
                 const itemId = parseInt(button.dataset.id);
                 const itemType = button.dataset.type;
 
-                let data;
-                if (itemType === 'events' || itemType === 'projects' && (window.location.pathname.includes('index') || window.location.pathname.includes('news'))) {
-                    data = newsData.find(item => item.id === itemId);
-                     if(!data) data = projectsData.find(item => item.id === itemId);
-                } else if (itemType === 'projects') {
-                    data = projectsData.find(item => item.id === itemId);
-                } else if (itemType === 'announcements') {
-                    data = announcementsData.find(item => item.id === itemId);
+                const parentContainer = button.closest('.cards-container, .news-grid-container');
+                let dataSource;
+
+                if (parentContainer) {
+                    switch(parentContainer.id) {
+                        case 'latest-announcements-container':
+                        case 'announcements-container':
+                            dataSource = announcementsData;
+                            break;
+                        case 'latest-news-container':
+                        case 'news-container':
+                            dataSource = newsData;
+                            break;
+                        case 'latest-projects-container':
+                        case 'projects-container':
+                            dataSource = projectsData;
+                            break;
+                    }
                 }
 
-
-                if (itemType === 'announcements') {
-                    modal.classList.add('announcement-modal');
-                } else {
-                    modal.classList.remove('announcement-modal');
+                // Fallback for safety, though the above should be robust
+                if (!dataSource) {
+                    if (itemType === 'announcements') dataSource = announcementsData;
+                    else if (itemType === 'events') dataSource = newsData;
+                    else if (itemType === 'projects') dataSource = projectsData;
                 }
+
+                const data = dataSource ? dataSource.find(item => item.id === itemId) : null;
 
                 if (data) {
                     modalTitle.textContent = data.title;
                     modalText.textContent = data.description;
-                    modalImage.src = data.image;
+
+                    if (itemType === 'announcements') {
+                        // Handle announcements: show single image
+                        modal.classList.add('announcement-modal');
+                        modalImage.src = data.image;
+                        modalImage.style.display = 'block';
+                        modalSlider.style.display = 'none';
+                    } else {
+                        // Handle news/projects: show slider
+                        modal.classList.remove('announcement-modal');
+                        modalImage.style.display = 'none';
+                        modalSlider.style.display = 'block';
+
+                        sliderWrapper.innerHTML = '';
+                        if (data.images && data.images.length > 0) {
+                            data.images.forEach(imgSrc => {
+                                const img = document.createElement('img');
+                                img.src = imgSrc;
+                                img.alt = data.title;
+                                sliderWrapper.appendChild(img);
+                            });
+
+                            if (data.images.length > 1) {
+                                createDots(data.images.length);
+                                prevBtn.style.display = 'block';
+                                nextBtn.style.display = 'block';
+                                dotsContainer.style.display = 'flex';
+                            } else {
+                                dotsContainer.innerHTML = '';
+                                prevBtn.style.display = 'none';
+                                nextBtn.style.display = 'none';
+                                dotsContainer.style.display = 'none';
+                            }
+                            showSlide(0);
+                        }
+                    }
+
                     modal.style.display = 'block';
                 }
             }
