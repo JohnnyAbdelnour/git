@@ -866,11 +866,82 @@ footer {
     cursor: pointer;
 }
 
-.modal-header-image {
+/* Modal Image Slider Styles */
+.modal-image-slider {
+    position: relative;
     width: 100%;
-    height: 300px;
+    height: 350px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.slider-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.slider-wrapper img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    display: block;
+    display: none; /* Hide all slides by default */
+}
+
+.slider-wrapper img.slide-active {
+    display: block; /* Show only the active slide */
+}
+
+.modal-image-slider .prev-btn,
+.modal-image-slider .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 8px 13px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+    z-index: 10;
+    transition: background-color 0.3s;
+    line-height: 1;
+}
+
+.modal-image-slider .prev-btn:hover,
+.modal-image-slider .next-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-image-slider .prev-btn {
+    left: 15px;
+}
+
+.modal-image-slider .next-btn {
+    right: 15px;
+}
+
+.slider-dots-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.slider-dots-container .dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.slider-dots-container .dot.active {
+    background-color: #ffffff;
 }
 
 .modal-body {
