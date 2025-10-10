@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('ZAN_DATA_READY', function () {
     const newsData = [
         {
             id: 1,
