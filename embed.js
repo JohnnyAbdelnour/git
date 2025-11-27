@@ -14,7 +14,7 @@
    * Example for GitHub Pages: 
    * const MANUAL_HOST_URL = "https://johnnyabdelnour.github.io/zan_bot_repo";
    */
-  const MANUAL_HOST_URL = ""; 
+  const MANUAL_HOST_URL = "https://johnnyabdelnour.github.io/MunicipalityAI/embed.js"; 
 
   // --- Logic to determine the App URL ---
   let APP_URL = MANUAL_HOST_URL;
