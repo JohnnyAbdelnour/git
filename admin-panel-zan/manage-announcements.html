@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة التعاميم والقرارات - لوحة التحكم</title>
+    <link rel="stylesheet" href="assets/css/admin-style-rtl.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/images/Logo Zan.png" alt="شعار" class="sidebar-logo">
+                <span class="brand-text">بلدية زان</span>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="dashboard.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-home"></i></div>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-news.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-newspaper"></i></div>
+                        <span>إدارة الأخبار</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-announcements.html" class="menu-link active">
+                        <div class="menu-icon"><i class="fas fa-bullhorn"></i></div>
+                        <span>التعاميم والقرارات</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-projects.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-hard-hat"></i></div>
+                        <span>المشاريع الإنمائية</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-gallery.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-images"></i></div>
+                        <span>معرض الصور</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="index.html" class="menu-link" style="color: #ff8a80;">
+                        <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <span>تسجيل الخروج</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-overlay"></div>
+
+        <div class="main-content">
+            <header class="top-header">
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+                <div style="margin-right: auto;"></div>
+                <div class="header-actions">
+                    <div class="user-profile">
+                        <img src="assets/images/placeholder.jpg" alt="User" class="user-avatar">
+                        <span style="font-weight: 600;">المشرف العام</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h1 class="page-title">إدارة التعاميم والقرارات</h1>
+                    <button class="btn btn-primary" onclick="document.getElementById('addModal').style.display='block'">
+                        <i class="fas fa-plus"></i> إضافة تعميم جديد
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-controls">
+                        <div class="search-box">
+                            <input type="text" id="tableSearch" placeholder="بحث في التعاميم...">
+                            <i class="fas fa-search"></i>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>عرض:</label>
+                            <select id="itemsPerPage" class="form-control" style="width: auto; padding: 5px 10px;">
+                                <option value="10">١٠</option>
+                                <option value="20">٢٠</option>
+                                <option value="50">٥٠</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="responsive-table">
+                        <table id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th data-sort="number">رقم القرار</th>
+                                    <th data-sort="string">موضوع التعميم</th>
+                                    <th data-sort="date">تاريخ الصدور</th>
+                                    <th data-sort="string">النوع</th>
+                                    <th>ملف PDF</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-desc="قرار تنظيمي يتعلق بتحديد دوام عمل موظفي البلدية خلال شهر رمضان المبارك.">
+                                    <td class="arabic-num">٢٠٢٣/٤٥</td>
+                                    <td>تعديل دوام العمل في رمضان</td>
+                                    <td class="arabic-num" data-date="2023-03-15">١٥ آذار ٢٠٢٣</td>
+                                    <td><span class="badge" style="background:#e3f2fd; color:#1565c0; padding:4px 8px; border-radius:4px;">إداري</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="تعميم للمواطنين بضرورة عدم رمي النفايات في الأماكن غير المخصصة لها تحت طائلة المسؤولية.">
+                                    <td class="arabic-num">٢٠٢٣/٤٢</td>
+                                    <td>تعميم حول رمي النفايات</td>
+                                    <td class="arabic-num" data-date="2023-03-01">٠١ آذار ٢٠٢٣</td>
+                                    <td><span class="badge" style="background:#e8f5e9; color:#2e7d32; padding:4px 8px; border-radius:4px;">بيئي</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="قرار بقطع طريق السوق التجاري بسبب أعمال التزفيت والصيانة لمدة يومين.">
+                                    <td class="arabic-num">٢٠٢٣/٣٩</td>
+                                    <td>إغلاق طريق السوق مؤقتاً</td>
+                                    <td class="arabic-num" data-date="2023-02-20">٢٠ شباط ٢٠٢٣</td>
+                                    <td><span class="badge" style="background:#fff3e0; color:#ef6c00; padding:4px 8px; border-radius:4px;">عام</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="دعوة لجميع المكلفين لتسديد الرسوم البلدية المتوجبة عليهم قبل نهاية السنة المالية.">
+                                    <td class="arabic-num">٢٠٢٣/٣٥</td>
+                                    <td>دعوة لتسديد الرسوم</td>
+                                    <td class="arabic-num" data-date="2023-02-05">٠٥ شباط ٢٠٢٣</td>
+                                    <td><span class="badge" style="background:#e3f2fd; color:#1565c0; padding:4px 8px; border-radius:4px;">مالي</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="منع سير الدراجات النارية بعد الساعة العاشرة ليلاً للحفاظ على الهدوء العام.">
+                                    <td class="arabic-num">٢٠٢٣/٣٠</td>
+                                    <td>تنظيم سير الدراجات النارية</td>
+                                    <td class="arabic-num" data-date="2023-01-15">١٥ كانون الثاني ٢٠٢٣</td>
+                                    <td><span class="badge" style="background:#fff3e0; color:#ef6c00; padding:4px 8px; border-radius:4px;">أمني</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="إعلان عن بدء استقبال طلبات الاشتراك في المولد الكهربائي الجديد.">
+                                    <td class="arabic-num">٢٠٢٣/٢٥</td>
+                                    <td>اشتراكات المولد الكهربائي</td>
+                                    <td class="arabic-num" data-date="2023-01-05">٠٥ كانون الثاني ٢٠٢٣</td>
+                                    <td><span class="badge" style="background:#fff3e0; color:#ef6c00; padding:4px 8px; border-radius:4px;">خدمات</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="تعميم يتعلق بإجراءات الوقاية الصحية وتدابير النظافة في المطاعم والمحلات الغذائية.">
+                                    <td class="arabic-num">٢٠٢٢/٩٥</td>
+                                    <td>إجراءات السلامة الغذائية</td>
+                                    <td class="arabic-num" data-date="2022-12-20">٢٠ كانون الأول ٢٠٢٢</td>
+                                    <td><span class="badge" style="background:#e8f5e9; color:#2e7d32; padding:4px 8px; border-radius:4px;">صحي</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="قرار بإقفال البلدية بمناسبة عيد الاستقلال.">
+                                    <td class="arabic-num">٢٠٢٢/٨٨</td>
+                                    <td>عطلة عيد الاستقلال</td>
+                                    <td class="arabic-num" data-date="2022-11-18">١٨ تشرين الثاني ٢٠٢٢</td>
+                                    <td><span class="badge" style="background:#e3f2fd; color:#1565c0; padding:4px 8px; border-radius:4px;">إداري</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="طلب تقديم عروض لتلزيم مشروع إنشاء حديقة عامة في منطقة التلة.">
+                                    <td class="arabic-num">٢٠٢٢/٨٠</td>
+                                    <td>مناقصة إنشاء حديقة عامة</td>
+                                    <td class="arabic-num" data-date="2022-10-25">٢٥ تشرين الأول ٢٠٢٢</td>
+                                    <td><span class="badge" style="background:#e3f2fd; color:#1565c0; padding:4px 8px; border-radius:4px;">مناقصات</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="إعلان عن تنظيم دورة تقوية في اللغة الإنجليزية لطلاب المرحلة الثانوية في المكتبة العامة.">
+                                    <td class="arabic-num">٢٠٢٢/٧٥</td>
+                                    <td>دورة تقوية لغة إنجليزية</td>
+                                    <td class="arabic-num" data-date="2022-10-10">١٠ تشرين الأول ٢٠٢٢</td>
+                                    <td><span class="badge" style="background:#fff3e0; color:#ef6c00; padding:4px 8px; border-radius:4px;">ثقافي</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- More dummy rows as needed -->
+                                <tr data-desc="تذكير بضرورة ترخيص البناء قبل المباشرة بأي أعمال إنشائية.">
+                                    <td class="arabic-num">٢٠٢٢/٧٠</td>
+                                    <td>رخص البناء</td>
+                                    <td class="arabic-num" data-date="2022-09-15">١٥ أيلول ٢٠٢٢</td>
+                                    <td><span class="badge" style="background:#fff3e0; color:#ef6c00; padding:4px 8px; border-radius:4px;">تنظيم مدني</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="قرار بمنع الصيد في كافة أنحاء البلدة خلال موسم تكاثر الطيور.">
+                                    <td class="arabic-num">٢٠٢٢/٦٥</td>
+                                    <td>منع الصيد البري</td>
+                                    <td class="arabic-num" data-date="2022-09-01">٠١ أيلول ٢٠٢٢</td>
+                                    <td><span class="badge" style="background:#e8f5e9; color:#2e7d32; padding:4px 8px; border-radius:4px;">بيئي</span></td>
+                                    <td><a href="#" style="color: #d32f2f;"><i class="fas fa-file-pdf"></i> تحميل</a></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="pagination" class="pagination-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div id="addModal" class="sidebar-overlay" style="z-index: 2000;">
+        <div class="login-card" style="margin: 5% auto; max-width: 600px; text-align: right; position: relative;">
+            <button onclick="document.getElementById('addModal').style.display='none'" style="position: absolute; left: 20px; top: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h2 class="page-title" style="margin-bottom: 20px;">إضافة تعميم جديد</h2>
+
+            <form>
+                <div class="form-group">
+                    <label class="form-label">رقم القرار</label>
+                    <input type="text" class="form-control" placeholder="مثال: ٢٠٢٣/٩٩">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">عنوان التعميم</label>
+                    <input type="text" class="form-control" placeholder="الموضوع">
+                </div>
+
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">تاريخ الصدور</label>
+                        <input type="date" id="gregorianDate" class="form-control">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">التاريخ الهجري</label>
+                        <input type="text" id="hijriDateDisplay" class="form-control" readonly style="background: #f5f5f5;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">نوع التعميم</label>
+                    <select class="form-control">
+                        <option>إداري</option>
+                        <option>مالي</option>
+                        <option>بيئي</option>
+                        <option>عام</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">نص التعميم</label>
+                    <textarea class="form-control" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">ملف PDF (اختياري)</label>
+                    <input type="file" class="form-control" accept=".pdf">
+                </div>
+
+                <div style="text-align: left; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('addModal').style.display='none'">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">حفظ ونشر</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/admin-main.js"></script>
+</body>
+</html>

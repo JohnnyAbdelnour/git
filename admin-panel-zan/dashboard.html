@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - بلدية زان</title>
+    <link rel="stylesheet" href="assets/css/admin-style-rtl.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/images/Logo Zan.png" alt="شعار" class="sidebar-logo">
+                <span class="brand-text">بلدية زان</span>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="dashboard.html" class="menu-link active">
+                        <div class="menu-icon"><i class="fas fa-home"></i></div>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-news.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-newspaper"></i></div>
+                        <span>إدارة الأخبار</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-announcements.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-bullhorn"></i></div>
+                        <span>التعاميم والقرارات</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-projects.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-hard-hat"></i></div>
+                        <span>المشاريع الإنمائية</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-gallery.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-images"></i></div>
+                        <span>معرض الصور</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="index.html" class="menu-link" style="color: #ff8a80;">
+                        <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <span>تسجيل الخروج</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+
+                <div style="margin-right: auto;"></div>
+
+                <div class="header-actions">
+                    <div class="user-profile">
+                        <img src="assets/images/placeholder.jpg" alt="User" class="user-avatar">
+                        <span style="font-weight: 600;">المشرف العام</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h1 class="page-title">لوحة القيادة</h1>
+                    <div style="font-size: 0.95rem; color: var(--text-light);">
+                        <i class="far fa-calendar-alt"></i>
+                        <span id="currentDate" class="arabic-num">15 تشرين الأول 2023</span>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3 class="arabic-num">42</h3>
+                            <p>إجمالي الأخبار</p>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3 class="arabic-num">18</h3>
+                            <p>التعاميم النشطة</p>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3 class="arabic-num">7</h3>
+                            <p>مشاريع قيد التنفيذ</p>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3 class="arabic-num">156</h3>
+                            <p>صورة في المعرض</p>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-images"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="page-header">
+                    <h2 class="page-title" style="font-size: 1.4rem;">إجراءات سريعة</h2>
+                </div>
+
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <a href="manage-news.html" class="stat-card" style="justify-content: center; flex-direction: column; gap: 15px; text-align: center;">
+                        <div class="stat-icon" style="background: #e0f2f1; width: 50px; height: 50px;">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <span style="font-weight: 700; color: var(--primary-dark);">إضافة خبر جديد</span>
+                    </a>
+
+                    <a href="manage-announcements.html" class="stat-card" style="justify-content: center; flex-direction: column; gap: 15px; text-align: center;">
+                        <div class="stat-icon" style="background: #e0f2f1; width: 50px; height: 50px;">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <span style="font-weight: 700; color: var(--primary-dark);">نشر تعميم جديد</span>
+                    </a>
+                </div>
+
+                <!-- Recent Activity Table -->
+                <div class="page-header" style="margin-top: 30px;">
+                    <h2 class="page-title" style="font-size: 1.4rem;">آخر النشاطات</h2>
+                </div>
+
+                <div class="table-container">
+                    <div class="responsive-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>النشاط</th>
+                                    <th>القسم</th>
+                                    <th>التاريخ</th>
+                                    <th>المستخدم</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>إضافة خبر "حملة تشجير واسعة"</td>
+                                    <td>الأخبار</td>
+                                    <td class="arabic-num">14/10/2023</td>
+                                    <td>Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>تحديث مشروع "تعبيد الطرقات"</td>
+                                    <td>المشاريع</td>
+                                    <td class="arabic-num">12/10/2023</td>
+                                    <td>Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>نشر تعميم "دوام العمل الرسمي"</td>
+                                    <td>التعاميم</td>
+                                    <td class="arabic-num">10/10/2023</td>
+                                    <td>Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>إضافة 5 صور لألبوم "عيد الاستقلال"</td>
+                                    <td>المعرض</td>
+                                    <td class="arabic-num">09/10/2023</td>
+                                    <td>Admin</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/admin-main.js"></script>
+</body>
+</html>
