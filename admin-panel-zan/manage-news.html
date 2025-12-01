@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الأخبار - لوحة التحكم</title>
+    <link rel="stylesheet" href="assets/css/admin-style-rtl.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/images/Logo Zan.png" alt="شعار" class="sidebar-logo">
+                <span class="brand-text">بلدية زان</span>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="dashboard.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-home"></i></div>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-news.html" class="menu-link active">
+                        <div class="menu-icon"><i class="fas fa-newspaper"></i></div>
+                        <span>إدارة الأخبار</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-announcements.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-bullhorn"></i></div>
+                        <span>التعاميم والقرارات</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-projects.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-hard-hat"></i></div>
+                        <span>المشاريع الإنمائية</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-gallery.html" class="menu-link">
+                        <div class="menu-icon"><i class="fas fa-images"></i></div>
+                        <span>معرض الصور</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="index.html" class="menu-link" style="color: #ff8a80;">
+                        <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <span>تسجيل الخروج</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-overlay"></div>
+
+        <div class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+                <div style="margin-right: auto;"></div>
+                <div class="header-actions">
+                    <div class="user-profile">
+                        <img src="assets/images/placeholder.jpg" alt="User" class="user-avatar">
+                        <span style="font-weight: 600;">المشرف العام</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h1 class="page-title">إدارة الأخبار</h1>
+                    <button class="btn btn-primary" onclick="document.getElementById('addModal').style.display='block'">
+                        <i class="fas fa-plus"></i> إضافة خبر جديد
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-controls">
+                        <div class="search-box">
+                            <input type="text" id="tableSearch" placeholder="بحث ذكي (العنوان، التفاصيل، التاريخ)...">
+                            <i class="fas fa-search"></i>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>عرض:</label>
+                            <select id="itemsPerPage" class="form-control" style="width: auto; padding: 5px 10px;">
+                                <option value="10">١٠</option>
+                                <option value="20">٢٠</option>
+                                <option value="50">٥٠</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="responsive-table">
+                        <table id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th data-sort="string">العنوان</th>
+                                    <th data-sort="date">تاريخ النشر</th>
+                                    <th data-sort="string">الحالة</th>
+                                    <th data-sort="number">المشاهدات</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Generated Rows -->
+                                <tr data-desc="تفاصيل حملة التشجير التي قامت بها البلدية بالتعاون مع الجمعيات الأهلية لزرع 500 شجرة صنوبر في الأحراج المحيطة.">
+                                    <td>حملة تشجير واسعة في البلدة</td>
+                                    <td class="arabic-num" data-date="2023-10-15">١٥ تشرين الأول ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">١٥٤٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="اجتماع المجلس البلدي الدوري لمناقشة الموازنة العامة ومشاريع البنى التحتية المقررة لهذا العام.">
+                                    <td>اجتماع المجلس البلدي الدوري</td>
+                                    <td class="arabic-num" data-date="2023-10-10">١٠ تشرين الأول ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٩٨٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="تدشين شبكة الصرف الصحي الجديدة في الحي الشرقي بحضور فعاليات المنطقة. المشروع ممول من الجهات المانحة.">
+                                    <td>تدشين شبكة الصرف الصحي</td>
+                                    <td class="arabic-num" data-date="2023-09-25">٢٥ أيلول ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٢١٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="إعلان عن انقطاع التيار الكهربائي بسبب أعمال الصيانة في المحطة الرئيسية يوم الأحد القادم.">
+                                    <td>بيان هام حول الكهرباء</td>
+                                    <td class="arabic-num" data-date="2023-09-20">٢٠ أيلول ٢٠٢٣</td>
+                                    <td><span style="color: #ff9800; font-weight: bold;">أرشيف</span></td>
+                                    <td class="arabic-num">٣٥٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="افتتاح المهرجان الصيفي السنوي في ساحة البلدة بحضور شعبي كبير وعروض فنية متنوعة.">
+                                    <td>افتتاح مهرجان الصيف</td>
+                                    <td class="arabic-num" data-date="2023-08-15">١٥ آب ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٥٤٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="حملة تلقيح ضد شلل الأطفال في المستوصف البلدي للأعمار من سنة إلى 5 سنوات.">
+                                    <td>حملة تلقيح للأطفال</td>
+                                    <td class="arabic-num" data-date="2023-08-01">٠١ آب ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">١٢٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="استقبال وفد من المغتربين وزيارة المواقع الأثرية في البلدة لتعزيز الروابط.">
+                                    <td>زيارة وفد المغتربين</td>
+                                    <td class="arabic-num" data-date="2023-07-20">٢٠ تموز ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٨٥٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="البدء بمشروع إنارة الشوارع بالطاقة الشمسية في الأحياء الداخلية.">
+                                    <td>مشروع الطاقة الشمسية</td>
+                                    <td class="arabic-num" data-date="2023-07-10">١٠ تموز ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٢٣٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="تعزية بوفاة أحد وجهاء البلدة وإعلان الحداد الرسمي لمدة ثلاثة أيام.">
+                                    <td>نعي وتعزية</td>
+                                    <td class="arabic-num" data-date="2023-06-30">٣٠ حزيران ٢٠٢٣</td>
+                                    <td><span style="color: #ff9800; font-weight: bold;">أرشيف</span></td>
+                                    <td class="arabic-num">٤١٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="ورشة عمل حول فرز النفايات من المصدر بالتعاون مع المدارس الرسمية والخاصة.">
+                                    <td>ورشة عمل بيئية</td>
+                                    <td class="arabic-num" data-date="2023-06-15">١٥ حزيران ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٧٦٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="حملة نظافة عامة للشوارع والساحات بمشاركة الكشاف والجمعيات الشبابية.">
+                                    <td>يوم النظافة العالمي</td>
+                                    <td class="arabic-num" data-date="2023-06-05">٠٥ حزيران ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">١١٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="توزيع حصص غذائية على العائلات المحتاجة بمناسبة حلول شهر رمضان المبارك.">
+                                    <td>مساعدات شهر رمضان</td>
+                                    <td class="arabic-num" data-date="2023-03-20">٢٠ آذار ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">١٨٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="إطلاق الموقع الإلكتروني الجديد للبلدية لتسهيل المعاملات والتواصل مع المواطنين.">
+                                    <td>إطلاق الموقع الإلكتروني</td>
+                                    <td class="arabic-num" data-date="2023-02-10">١٠ شباط ٢٠٢٣</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٣٠٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="تحذير من العاصفة الثلجية القادمة ودعوة المواطنين لتوخي الحذر وتجهيز المؤن.">
+                                    <td>تحذير: عاصفة ثلجية</td>
+                                    <td class="arabic-num" data-date="2023-01-15">١٥ كانون الثاني ٢٠٢٣</td>
+                                    <td><span style="color: #ff9800; font-weight: bold;">أرشيف</span></td>
+                                    <td class="arabic-num">٦٠٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="تهنئة بمناسبة عيد الميلاد المجيد ورأس السنة الميلادية.">
+                                    <td>تهنئة بالأعياد</td>
+                                    <td class="arabic-num" data-date="2022-12-24">٢٤ كانون الأول ٢٠٢٢</td>
+                                    <td><span style="color: #ff9800; font-weight: bold;">أرشيف</span></td>
+                                    <td class="arabic-num">١٥٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- More Dummy Rows -->
+                                <tr data-desc="لقاء حواري مع شباب البلدة للاستماع لمشاكلهم ومقترحاتهم التطويرية.">
+                                    <td>لقاء حواري شبابي</td>
+                                    <td class="arabic-num" data-date="2022-11-05">٠٥ تشرين الثاني ٢٠٢٢</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٩٥٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="افتتاح المعرض الحرفي السنوي لدعم الإنتاج المحلي والأسر المنتجة.">
+                                    <td>معرض الحرف اليدوية</td>
+                                    <td class="arabic-num" data-date="2022-10-20">٢٠ تشرين الأول ٢٠٢٢</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">١٣٥٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="توزيع شتول زراعية مدعومة على المزارعين ضمن خطة الدعم الزراعي.">
+                                    <td>دعم المزارعين</td>
+                                    <td class="arabic-num" data-date="2022-09-10">١٠ أيلول ٢٠٢٢</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٨٩٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="حفل تكريم الطلاب الناجحين في الشهادات الرسمية وتوزيع الجوائز.">
+                                    <td>تكريم الطلاب الناجحين</td>
+                                    <td class="arabic-num" data-date="2022-08-05">٠٥ آب ٢٠٢٢</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">٢٥٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-desc="صيانة وتزفيت الطريق العام المؤدي إلى الساحة الرئيسية.">
+                                    <td>صيانة الطريق العام</td>
+                                    <td class="arabic-num" data-date="2022-07-15">١٥ تموز ٢٠٢٢</td>
+                                    <td><span style="color: green; font-weight: bold;">منشور</span></td>
+                                    <td class="arabic-num">١٧٠٠</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-icon view-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn-icon edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon delete-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="pagination" class="pagination-container">
+                        <!-- Pagination will be inserted here by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div id="addModal" class="sidebar-overlay" style="z-index: 2000;">
+        <div class="login-card" style="margin: 5% auto; max-width: 800px; text-align: right; position: relative;">
+            <button onclick="document.getElementById('addModal').style.display='none'" style="position: absolute; left: 20px; top: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h2 class="page-title" style="margin-bottom: 20px;">إضافة خبر جديد</h2>
+
+            <form>
+                <div class="form-group">
+                    <label class="form-label">عنوان الخبر</label>
+                    <input type="text" class="form-control" placeholder="أدخل العنوان هنا">
+                </div>
+
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">التاريخ (ميلادي)</label>
+                        <input type="date" id="gregorianDate" class="form-control">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">التاريخ (هجري - تلقائي)</label>
+                        <input type="text" id="hijriDateDisplay" class="form-control" readonly style="background: #f5f5f5;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">التفاصيل الكاملة</label>
+                    <textarea class="form-control" rows="5"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">الصور المرفقة</label>
+                    <label class="file-upload-area">
+                        <input type="file" id="imageUpload" multiple accept="image/*" hidden>
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 10px;"></i>
+                        <p>اضغط أو اسحب الصور هنا للرفع</p>
+                    </label>
+                    <div id="imagePreviewContainer" class="preview-container"></div>
+                </div>
+
+                <div style="text-align: left; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('addModal').style.display='none'">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">حفظ ونشر</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/admin-main.js"></script>
+</body>
+</html>
